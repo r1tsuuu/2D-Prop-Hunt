@@ -16,7 +16,7 @@ public class GameServer {
             String message = in.readUTF();
             System.out.println(message);
         } catch (IOException e) {
-
+            System.out.println("Server Error");
         }
     }
 }

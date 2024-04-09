@@ -1,6 +1,4 @@
-
-import javax.swing.JComponent;
-
+package engine;
 public class GraphicsThread extends Thread {
 
     private boolean running;
@@ -25,6 +23,7 @@ public class GraphicsThread extends Thread {
             if (currentTime - previousTime >= 1_000_000_000 / refreshRate) {
                 canvas.process((currentTime - previousTime) / 1_000_000_000f);
                 previousTime = currentTime;
+                canvas.repaint();
             }
         }
         System.out.println("done!");

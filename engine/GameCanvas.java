@@ -1,19 +1,21 @@
+package engine;
 import javax.swing.JComponent;
 
-import drawing.DrawingObject;
-import drawing.ImageObject;
+import engine.drawing.DrawingObject;
+import engine.drawing.ImageObject;
+import math.Vector2;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+
 public class GameCanvas extends JComponent {
     private ArrayList<DrawingObject> drawingObjects;
     
     public GameCanvas() {
         setPreferredSize(new Dimension(800, 600));
         drawingObjects = new ArrayList<DrawingObject>();
-
-        drawingObjects.add(new ImageObject("assets\\freedom.jpg"));
     }
 
     // called every frame
@@ -30,5 +32,9 @@ public class GameCanvas extends JComponent {
         for(DrawingObject drawingObject : drawingObjects){
             drawingObject.draw(g2d);
         }
+    }
+
+    public void add(DrawingObject drawingObject) {
+        drawingObjects.add(drawingObject);
     }
 }

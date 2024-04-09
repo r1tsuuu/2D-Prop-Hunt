@@ -5,7 +5,7 @@ public class Vector2 {
     public static final Vector2 UP = new Vector2(0, -1);
     public static final Vector2 DOWN = new Vector2(0, 1);
     public static final Vector2 LEFT = new Vector2(-1, 0);
-    public static final Vector2 RIGHT = new Vector2(0, 1);
+    public static final Vector2 RIGHT = new Vector2(1, 0);
     public static final Vector2 ZERO = new Vector2(0, 0);
     public static final Vector2 ONE = new Vector2(1, 1);
 
@@ -59,5 +59,9 @@ public class Vector2 {
 
     public static Vector2 multiply(Vector2 v, float n) {
         return new Vector2(v.x * n, v.y * n);
+    }
+
+    @Override public String toString(){
+        return String.format("%.3f, %.3f", x, y);
     }
 }

@@ -1,4 +1,4 @@
-package drawing;
+package engine.drawing;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,9 +6,10 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import engine.GameObject;
 import math.Vector2;
 
-public class ImageObject extends DrawingObject {
+public class ImageObject extends GameObject implements DrawingObject {
     private BufferedImage image;
     private String path;
     public ImageObject(String name, Vector2 position, String path) {
@@ -27,6 +28,9 @@ public class ImageObject extends DrawingObject {
     }
     @Override
     public void draw(Graphics2D g2d) {
-        g2d.drawImage(image, 0, 0, null)
+        g2d.drawImage(image, (int)getPosition().getX(), (int)getPosition().getY(), null);
+    }
+    @Override
+    public void process(float delta) {
     }
 }
