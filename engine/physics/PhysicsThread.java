@@ -11,9 +11,13 @@ public class PhysicsThread extends Thread {
         running = true;
         long previousTime = System.nanoTime();
         while (running) {
-            for (PhysicsObject object : physicsObjects) {
-                object.physicsProcess((System.nanoTime() - previousTime) / 1_000_000_000f);
+            long currentTime = System.nanoTime();
+            System.out.println(physicsObjects.size());
+            for (int i = 0; i < physicsObjects.size(); i++) {
+                var object = physicsObjects.get(i);
+                object.physicsProcess((currentTime - previousTime) / 1_000_000_000f);
             }
+            previousTime = currentTime;
         }
     }
 

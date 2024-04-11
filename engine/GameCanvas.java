@@ -1,4 +1,5 @@
 package engine;
+
 import javax.swing.JComponent;
 
 import engine.drawing.DrawingObject;
@@ -32,22 +33,29 @@ public class GameCanvas extends JComponent {
         revalidate();
     }
 
-    @Override public void paintComponent(Graphics g) {
+    @Override
+    public void paintComponent(Graphics g) {
         var g2d = (Graphics2D) g;
-        for(DrawingObject drawingObject : drawingObjects){
+        for (DrawingObject drawingObject : drawingObjects) {
             drawingObject.draw(g2d);
         }
     }
 
-    public void add(DrawingObject drawingObject) {
-        drawingObjects.add(drawingObject);
-        if (drawingObject instanceof PhysicsObject physicsObject) {
+    public void add(GameObject gameObject) {
+        System.out.println(gameObject.getName());
+        System.out.println(gameObject instanceof DrawingObject);
+        System.out.println(gameObject instanceof PhysicsObject);
+        System.out.println(gameObject instanceof InputObject);
+        if (gameObject instanceof DrawingObject drawingObject)
+            drawingObjects.add(drawingObject);
+        if (gameObject instanceof PhysicsObject physicsObject) {
             physicsThread.add(physicsObject);
         }
-        if (drawingObject instanceof InputObject inputObject) {
+        if (gameObject instanceof InputObject inputObject) {
+            System.out.println("true!!!!!!!!!!!!!s");
             inputThread.add(inputObject);
         }
-        
+
     }
 
     public void setPhysicsThread(PhysicsThread thread) {
@@ -56,6 +64,10 @@ public class GameCanvas extends JComponent {
 
     public void setInputThread(Input thread) {
         inputThread = thread;
+    }
+
+    public void ready() {
+
     }
 
 }

@@ -29,6 +29,8 @@ public class GameFrame extends JFrame {
         canvas.setPhysicsThread(physicsThread);
         canvas.setInputThread(inputThread);
 
+        canvas.ready();
+
         pack();
         setVisible(true);
     }
