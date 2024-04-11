@@ -1,4 +1,7 @@
-package engine;
+package engine.drawing;
+
+import engine.GameCanvas;
+
 public class GraphicsThread extends Thread {
 
     private boolean running;

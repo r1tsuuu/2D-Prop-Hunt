@@ -2,8 +2,10 @@ package engine;
 import javax.swing.JComponent;
 
 import engine.drawing.DrawingObject;
-import engine.drawing.ImageObject;
-import math.Vector2;
+import engine.input.Input;
+import engine.input.InputObject;
+import engine.physics.PhysicsObject;
+import engine.physics.PhysicsThread;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,9 +13,12 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class GameCanvas extends JComponent {
+
     private ArrayList<DrawingObject> drawingObjects;
-    
-    public GameCanvas() {
+    private PhysicsThread physicsThread;
+    private Input inputThread;
+
+    public GameCanvas(GameFrame frame) {
         setPreferredSize(new Dimension(800, 600));
         drawingObjects = new ArrayList<DrawingObject>();
     }
@@ -36,5 +41,21 @@ public class GameCanvas extends JComponent {
 
     public void add(DrawingObject drawingObject) {
         drawingObjects.add(drawingObject);
+        if (drawingObject instanceof PhysicsObject physicsObject) {
+            physicsThread.add(physicsObject);
+        }
+        if (drawingObject instanceof InputObject inputObject) {
+            inputThread.add(inputObject);
+        }
+        
     }
+
+    public void setPhysicsThread(PhysicsThread thread) {
+        physicsThread = thread;
+    }
+
+    public void setInputThread(Input thread) {
+        inputThread = thread;
+    }
+
 }
