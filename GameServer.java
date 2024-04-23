@@ -5,13 +5,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class GameServer {
+    public static ServerSocket server;
     public static void main(String[] args){
         try {
-            System.out.println("Starting Server");
-            ServerSocket server = new ServerSocket(4952);    
-            System.out.println("Creating Socket");
+            server = new ServerSocket(4952);    
             Socket s = server.accept();
-            System.out.println("Accepting Input");
             DataInputStream in = new DataInputStream(s.getInputStream());
             String message = in.readUTF();
             System.out.println(message);

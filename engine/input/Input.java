@@ -140,7 +140,6 @@ public class Input {
         frame.addKeyListener(keyListener);
         frame.addMouseListener(mouseListener);
         frame.addMouseMotionListener(mouseMotionListener);
-        System.out.println("\n---HELLO---\n");
     }
 
     public void add(InputObject object) {

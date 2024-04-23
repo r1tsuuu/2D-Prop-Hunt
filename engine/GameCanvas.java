@@ -42,10 +42,6 @@ public class GameCanvas extends JComponent {
     }
 
     public void add(GameObject gameObject) {
-        System.out.println(gameObject.getName());
-        System.out.println(gameObject instanceof DrawingObject);
-        System.out.println(gameObject instanceof PhysicsObject);
-        System.out.println(gameObject instanceof InputObject);
         if (gameObject instanceof DrawingObject drawingObject)
             drawingObjects.add(drawingObject);
         if (gameObject instanceof PhysicsObject physicsObject) {

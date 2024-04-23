@@ -61,6 +61,10 @@ public class Vector2 {
         return new Vector2(v.x * n, v.y * n);
     }
 
+    public static boolean intersect(Vector2 starta, Vector2 enda, Vector2 startb, Vector2 endb) {
+        return false;
+    }
+
     @Override public String toString(){
         return String.format("%.3f, %.3f", x, y);
     }
