@@ -17,6 +17,11 @@ public class Vector2 {
         this.y = y;
     }
 
+    public Vector2(Vector2 old) {
+        this.x = old.x;
+        this.y = old.y;
+    }
+
     public float getX() {
         return x;
     }
@@ -35,6 +40,7 @@ public class Vector2 {
 
     /**
      * Adds the other vector to the current vector
+     * 
      * @param other vector
      * @return sum
      */
@@ -62,10 +68,16 @@ public class Vector2 {
     }
 
     public static boolean intersect(Vector2 starta, Vector2 enda, Vector2 startb, Vector2 endb) {
-        return false;
+        return intersect(starta.getX(), enda.getX(), startb.getX(), endb.getX()) &&
+                intersect(starta.getY(), enda.getY(), startb.getY(), endb.getY());
     }
 
-    @Override public String toString(){
+    private static boolean intersect(float starta, float enda, float startb, float endb) {
+        return starta < endb && startb < enda;
+    }
+
+    @Override
+    public String toString() {
         return String.format("%.3f, %.3f", x, y);
     }
 }

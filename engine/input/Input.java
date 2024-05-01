@@ -65,6 +65,14 @@ public class Input {
                 this.position = position;
                 this.type = type;
             }
+
+            public Vector2 getPosition() {
+                return position;
+            }
+
+            public int getType() {
+                return type;
+            }
         }
     }
 

@@ -33,4 +33,7 @@ public class ImageObject extends GameObject implements DrawingObject {
     @Override
     public void process(float delta) {
     }
+    public Vector2 getSize() {
+        return new Vector2(image.getWidth(), image.getHeight());
+    }
 }

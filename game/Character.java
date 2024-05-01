@@ -3,6 +3,7 @@ package game;
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
 import engine.input.InputObject;
+import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
 import math.Vector2;
 
@@ -10,11 +11,11 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
 
     boolean up, down, left, right = false;
     int speed = 100;
-    int zLevel;
+    CollisionBox collision;
 
     public Character(String name, Vector2 position, String path) {
         super(name, position, path);
-        zLevel = 0;
+        collision = new CollisionBox(this, position, getSize(), 0);
     }
 
     @Override
@@ -31,11 +32,6 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
         if (right) {
             getPosition().add(Vector2.multiply(Vector2.RIGHT, speed * delta));
         }
-
-    }
-
-    @Override
-    public void checkCollision(PhysicsObject other) {
     }
 
     @Override
@@ -53,4 +49,15 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
         }
     }
 
+    @Override
+    public void collided(PhysicsObject other, String direction, float offset) {
+        if (direction.equals("right"))
+            getPosition().add(new Vector2(-offset,0));
+        if (direction.equals("left"))
+            getPosition().add(new Vector2(offset,0));
+        if (direction.equals("top"))
+            getPosition().add(new Vector2(0, offset));
+        if (direction.equals("below"))
+            getPosition().add(new Vector2(0, -offset));
+    }
 }
