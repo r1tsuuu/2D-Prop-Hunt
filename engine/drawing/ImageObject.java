@@ -1,6 +1,7 @@
 package engine.drawing;
 
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -28,7 +29,10 @@ public class ImageObject extends GameObject implements DrawingObject {
     }
     @Override
     public void draw(Graphics2D g2d) {
-        g2d.drawImage(image, (int)getPosition().getX(), (int)getPosition().getY(), null);
+        var reset = g2d.getTransform();
+        g2d.translate(getPosition().getX(), getPosition().getY());
+        g2d.drawImage(image, 0, 0, null);
+        g2d.setTransform(reset);
     }
     @Override
     public void process(float delta) {

@@ -10,7 +10,7 @@ import math.Vector2;
 public class Character extends ImageObject implements PhysicsObject, InputObject {
 
     boolean up, down, left, right = false;
-    int speed = 100;
+    int speed = 250;
     CollisionBox collision;
 
     public Character(String name, Vector2 position, String path) {

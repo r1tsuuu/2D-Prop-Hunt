@@ -48,7 +48,6 @@ public class GameCanvas extends JComponent {
             physicsThread.add(physicsObject);
         }
         if (gameObject instanceof InputObject inputObject) {
-            System.out.println("true!!!!!!!!!!!!!s");
             inputThread.add(inputObject);
         }
 

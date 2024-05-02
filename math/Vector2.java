@@ -1,5 +1,7 @@
 package math;
 
+import java.awt.Dimension;
+
 public class Vector2 {
 
     public static final Vector2 UP = new Vector2(0, -1);
@@ -20,6 +22,11 @@ public class Vector2 {
     public Vector2(Vector2 old) {
         this.x = old.x;
         this.y = old.y;
+    }
+
+    public Vector2(Dimension d) {
+        this.x = (float) d.getWidth();
+        this.y = (float) d.getHeight();
     }
 
     public float getX() {
@@ -74,6 +81,12 @@ public class Vector2 {
 
     private static boolean intersect(float starta, float enda, float startb, float endb) {
         return starta < endb && startb < enda;
+    }
+
+    public static Vector2 lerp(Vector2 a, Vector2 b, float i) {
+        float x = a.x + (b.x - a.x) * i;
+        float y = a.y + (b.y - a.y) * i;
+        return new Vector2(x, y);
     }
 
     @Override

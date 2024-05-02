@@ -35,8 +35,11 @@ public class TestWall extends GameObject implements DrawingObject, PhysicsObject
 
     @Override
     public void draw(Graphics2D g2d) {
+        var reset = g2d.getTransform();
         g2d.setColor(color);
-        g2d.fill(new Rectangle2D.Double(position.getX(), position.getY(), size.getX(), size.getY()));
+        g2d.translate(position.getX(), position.getY());
+        g2d.fill(new Rectangle2D.Double(0, 0, size.getX(), size.getY()));
+        g2d.setTransform(reset);
     }
 
     @Override
