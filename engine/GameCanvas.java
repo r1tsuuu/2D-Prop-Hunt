@@ -5,6 +5,7 @@ import javax.swing.JComponent;
 import engine.drawing.DrawingObject;
 import engine.input.Input;
 import engine.input.InputObject;
+import engine.network.NetworkThread;
 import engine.physics.PhysicsObject;
 import engine.physics.PhysicsThread;
 

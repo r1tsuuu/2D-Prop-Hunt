@@ -1,13 +1,18 @@
 package game;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
+import engine.network.NetworkOutObject;
+import engine.network.NetworkThread;
 import engine.input.InputObject;
 import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
 import math.Vector2;
 
-public class Character extends ImageObject implements PhysicsObject, InputObject {
+public class Character extends ImageObject implements PhysicsObject, InputObject, NetworkOutObject {
 
     boolean up, down, left, right = false;
     int speed = 250;
@@ -16,6 +21,7 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
     public Character(String name, Vector2 position, String path) {
         super(name, position, path);
         collision = new CollisionBox(this, position, getSize(), 0);
+        NetworkThread.add(this);
     }
 
     @Override
@@ -59,5 +65,14 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
             getPosition().add(new Vector2(0, offset));
         if (direction.equals("below"))
             getPosition().add(new Vector2(0, -offset));
+    }
+
+    @Override
+    public void send(DataOutputStream dataOut) {
+        try {
+            dataOut.writeUTF(getPosition().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
