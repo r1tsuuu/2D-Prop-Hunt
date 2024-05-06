@@ -1,6 +1,5 @@
 package game;
 
-import java.io.DataInputStream;
 
 import engine.drawing.ImageObject;
 import engine.network.NetworkInObject;

@@ -28,6 +28,7 @@ Game Starter
             instance camera
                 uses player position /\
             etc
+            
         graphicsThread.start()
         physicsThread.start()
         inputThread.start()

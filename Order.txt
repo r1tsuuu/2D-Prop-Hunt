@@ -6,8 +6,8 @@ Order of the Game (Server)
 Game Server Starts
 [Server]: waiting for players
 
-Game Starter (Player 1) starts
-[Client CMD] ask for ip address and port
+Game Starter (Player 1) starts                          TODO: START MENU
+[Client CMD] ask for ip address and port                BASIC GUI (PRESS ENTER  TO START)
 Connects to the server
 
 Game Starter (Player 2) starts
@@ -19,7 +19,7 @@ Game Server makes Player 1 Hider first and Player 2 Seeker
 
 Server >> Hider
 Server >> Seeker
--Load the Map
+-Load the Map                                                        MAINMENU SCENE > MAP SCENE
 -Set Hider Position to Spawnpoint
 -Set Random Furniture to Hider
 -Set Black Screen to Seeker
@@ -27,4 +27,23 @@ After 10 seconds
 -Set Seeker Position to Spawn point
 -Remove Black Screen on Seeker
 
-Continue to send data from one another.
+Continue to send data from one player to to Player                  DONE
+``````````````````````````````````````````````````
+
+TODO
+Animated Sprites
+- Neil
+
+Game Starter
++ Main Menu
+
+Server
++ Order of Events
+
+HIDER
++ Seeker Vision Box
++ Change furniture
+
+SEEKER
++ Gun
++ Tracker

@@ -2,7 +2,6 @@ package game;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.SocketException;
 
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
