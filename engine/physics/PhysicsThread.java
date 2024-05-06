@@ -7,9 +7,12 @@ public class PhysicsThread extends Thread {
     private static ArrayList<PhysicsObject> physicsObjects;
     private static ArrayList<CollisionBox> boxes;
 
-    public void run() {
+    public PhysicsThread() {
         boxes = new ArrayList<CollisionBox>();
         physicsObjects = new ArrayList<PhysicsObject>();
+    }
+
+    public void run() {
         running = true;
         long previousTime = System.nanoTime();
         while (running) {

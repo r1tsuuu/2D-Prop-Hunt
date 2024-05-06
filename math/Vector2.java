@@ -91,6 +91,6 @@ public class Vector2 {
 
     @Override
     public String toString() {
-        return String.format("%.3f, %.3f", x, y);
+        return String.format("%.5f %.5f", x, y);
     }
 }

@@ -2,11 +2,11 @@ package game;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.SocketException;
 
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
 import engine.network.NetworkOutObject;
-import engine.network.NetworkThread;
 import engine.input.InputObject;
 import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
@@ -21,7 +21,6 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
     public Character(String name, Vector2 position, String path) {
         super(name, position, path);
         collision = new CollisionBox(this, position, getSize(), 0);
-        NetworkThread.add(this);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
         try {
             dataOut.writeUTF(getPosition().toString());
         } catch (IOException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Connection Error");
+        } 
     }
 }

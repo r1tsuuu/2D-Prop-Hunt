@@ -1,0 +1,59 @@
+Game Starter
+    new Game Frame()
+        new SampleScene()
+            new Game Canvas()
+                drawingObjects initialized
+        new GraphicsThread(scene)
+            uses scene.drawingObjects in SampleScene /\
+        new PhysicsThread()
+            physicsObjects initialized
+        new Input()
+            inputObjects initialized
+        new NetworkThread()
+            networkInObjects initialized
+            networkOutObjects initialized
+        
+        canvas.setPhysicsThread()
+        canvas.setInputThread()
+        canvas.setNetworkThread()
+
+        networkThread.establishConnection()
+            getDataOutputStream (to server)
+            getDataInputStream (from server)
+            server connected
+
+        canvas.ready()
+            instance player
+                load image...etc
+            instance camera
+                uses player position /\
+            etc
+        graphicsThread.start()
+        physicsThread.start()
+        inputThread.start()
+        networkThread.start()
+
+networkThread sends message (position of character (0,0))
+networkThread waits for input/message from server
+
+The player who loaded first can wander around
+The player who loads the second will immediately jump to next...
+
+GameServer
+    dataOut1.writeUTF("party_complete")
+NetworkThread
+    56: input = dataIn.readUTF() //party_commplete
+    canvas.networkNotified(input)
+        add()
+            new OtherCharacter()
+                load image...etc
+            
+    for networkObject: receive(input)
+        59: otherCharacter.receive
+            input is still party_complete...return
+    input = dataIn.readUTF() // position of other
+    for ...
+        59: othercharacter.receive
+            convert string into position
+
+

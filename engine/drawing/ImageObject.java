@@ -18,9 +18,11 @@ public class ImageObject extends GameObject implements DrawingObject {
         image = loadImage();
     }
     private BufferedImage loadImage() {
+        System.out.println("attempting loading " + getName());
         BufferedImage temp = null;
         try {
             temp = ImageIO.read(new File(path));
+            System.out.println("loaded " + path);
         } catch (Exception e) {
             System.out.println("Loading Image Error!");
         }

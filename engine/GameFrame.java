@@ -22,19 +22,22 @@ public class GameFrame extends JFrame {
         graphicsThread = new GraphicsThread(120, canvas);
         physicsThread = new PhysicsThread();
         inputThread = new Input(this);
-        networkThread = new NetworkThread("localhost", 4952);
+        networkThread = new NetworkThread("localhost", 4952, canvas);
         add(canvas);
+        
+        canvas.setPhysicsThread(physicsThread);
+        canvas.setInputThread(inputThread);
+        canvas.setNetworkThread(networkThread);
 
+        networkThread.establishConnection();
+        
+        canvas.ready();
+        
         graphicsThread.start();
         physicsThread.start();
         inputThread.start();
         networkThread.start();
-
-        canvas.setPhysicsThread(physicsThread);
-        canvas.setInputThread(inputThread);
-
-        canvas.ready();
-
+        
         pack();
         setVisible(true);
     }

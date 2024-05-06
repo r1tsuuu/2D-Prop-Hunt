@@ -1,0 +1,30 @@
+Legend
+>> Sends Data through network
+
+Order of the Game (Server)
+
+Game Server Starts
+[Server]: waiting for players
+
+Game Starter (Player 1) starts
+[Client CMD] ask for ip address and port
+Connects to the server
+
+Game Starter (Player 2) starts
+[Client CMD] ask for ip address and port
+Connects to the server
+
+2 Players connected (Server Starts)
+Game Server makes Player 1 Hider first and Player 2 Seeker
+
+Server >> Hider
+Server >> Seeker
+-Load the Map
+-Set Hider Position to Spawnpoint
+-Set Random Furniture to Hider
+-Set Black Screen to Seeker
+After 10 seconds
+-Set Seeker Position to Spawn point
+-Remove Black Screen on Seeker
+
+Continue to send data from one another.

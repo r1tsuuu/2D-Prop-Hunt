@@ -5,6 +5,8 @@ import javax.swing.JComponent;
 import engine.drawing.DrawingObject;
 import engine.input.Input;
 import engine.input.InputObject;
+import engine.network.NetworkInObject;
+import engine.network.NetworkOutObject;
 import engine.network.NetworkThread;
 import engine.physics.PhysicsObject;
 import engine.physics.PhysicsThread;
@@ -19,6 +21,7 @@ public class GameCanvas extends JComponent {
     private ArrayList<DrawingObject> drawingObjects;
     private PhysicsThread physicsThread;
     private Input inputThread;
+    private NetworkThread networkThread;
 
     public GameCanvas(GameFrame frame) {
         setPreferredSize(new Dimension(800, 600));
@@ -43,6 +46,7 @@ public class GameCanvas extends JComponent {
     }
 
     public void add(GameObject gameObject) {
+
         if (gameObject instanceof DrawingObject drawingObject)
             drawingObjects.add(drawingObject);
         if (gameObject instanceof PhysicsObject physicsObject) {
@@ -50,6 +54,12 @@ public class GameCanvas extends JComponent {
         }
         if (gameObject instanceof InputObject inputObject) {
             inputThread.add(inputObject);
+        }
+        if (gameObject instanceof NetworkInObject networkInObject) {
+            networkThread.add(networkInObject);
+        }
+        if (gameObject instanceof NetworkOutObject networkOutObject) {
+            networkThread.add(networkOutObject);
         }
 
     }
@@ -60,6 +70,14 @@ public class GameCanvas extends JComponent {
 
     public void setInputThread(Input thread) {
         inputThread = thread;
+    }
+
+    public void setNetworkThread(NetworkThread thread) {
+        networkThread = thread;
+    }
+
+    public void networkNotified(String input) {
+
     }
 
     public void ready() {
