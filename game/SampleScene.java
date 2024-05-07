@@ -13,9 +13,11 @@ public class SampleScene extends GameCanvas{
     Character player;
     Camera camera;
     OtherCharacter other;
+    String perspective;
 
-    public SampleScene(GameFrame frame) {
+    public SampleScene(GameFrame frame, String perspective) {
         super(frame);
+        this.perspective = perspective;
     }
 
     public void ready() {
@@ -28,5 +30,11 @@ public class SampleScene extends GameCanvas{
         add(new TestWall(new Vector2(300, 290), new Vector2(300, 10), Color.BLUE));
         add(player);
         add(new OtherCharacter("impostor", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif"));
+    
+        System.out.println("I am " + perspective);
+    }
+    @Override
+    public void networkNotified(String input) {
+
     }
 }

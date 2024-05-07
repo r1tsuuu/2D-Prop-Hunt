@@ -10,18 +10,18 @@ public class GameServer {
     private static ServerSocket server;
     private static DataOutputStream dataOut1; //hIDER
     private static DataOutputStream dataOut2; //SEEKER
+    private static DataInputStream in1;
+    private static DataInputStream in2;
     private static Socket s1;
     private static Socket s2;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
         try {
             waitConnection();
-            //preGame();
+            preGame();
             //TODO: 10 seconds waiting of Hider stuff like that
             String message = "";
             while (!message.equals("stop")) {
-                DataInputStream in1 = new DataInputStream(s1.getInputStream());
-                DataInputStream in2 = new DataInputStream(s2.getInputStream());
                 dataOut2.writeUTF(in1.readUTF());
                 dataOut1.writeUTF(in2.readUTF());
             }
@@ -41,12 +41,14 @@ public class GameServer {
 
             dataOut1 = new DataOutputStream(s1.getOutputStream());
             dataOut2 = new DataOutputStream(s2.getOutputStream());
+            in1 = new DataInputStream(s1.getInputStream());
+            in2 = new DataInputStream(s2.getInputStream());
             System.out.println("Players complete");
             dataOut1.writeUTF("party_complete");
             dataOut2.writeUTF("party_complete");
-
             dataOut1.flush();
             dataOut2.flush();
+            
         } catch (IOException e) {
             System.out.println("wait ereror");
         }

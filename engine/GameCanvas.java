@@ -3,13 +3,10 @@ package engine;
 import javax.swing.JComponent;
 
 import engine.drawing.DrawingObject;
-import engine.input.Input;
 import engine.input.InputObject;
 import engine.network.NetworkInObject;
 import engine.network.NetworkOutObject;
-import engine.network.NetworkThread;
 import engine.physics.PhysicsObject;
-import engine.physics.PhysicsThread;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

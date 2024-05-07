@@ -38,9 +38,9 @@ public class GameFrame extends JFrame {
         setVisible(true);
     }
 
-    public void startGame() {
+    public void startGame(String perspective) {
         remove(currentScene);
-        currentScene = new SampleScene(this);
+        currentScene = new SampleScene(this, perspective);
         graphicsThread.setCanvas(currentScene);
         physicsThread.setCanvas(currentScene);
         inputThread.setCanvas(currentScene);

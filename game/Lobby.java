@@ -18,8 +18,8 @@ public class Lobby extends GameCanvas {
 
     @Override
     public void networkNotified(String input) {
-        if (input.equals("party_complete")) {
-            getFrame().startGame();
+        if (input.equals("seeker") || input.equals("hider")) {
+            getFrame().startGame(input);
         }
     }
     
