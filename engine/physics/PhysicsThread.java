@@ -1,23 +1,41 @@
 package engine.physics;
+
 import java.util.ArrayList;
+
+import engine.GameCanvas;
 
 public class PhysicsThread extends Thread {
 
     private boolean running;
-    private static ArrayList<PhysicsObject> physicsObjects;
+    private GameCanvas canvas;
+
     private static ArrayList<CollisionBox> boxes;
 
     public PhysicsThread() {
         boxes = new ArrayList<CollisionBox>();
-        physicsObjects = new ArrayList<PhysicsObject>();
+    }
+
+    public PhysicsThread(GameCanvas canvas) {
+        this();
+        this.canvas = canvas;
+    }
+
+    public void setCanvas(GameCanvas canvas) {
+        this.canvas = canvas;
     }
 
     public void run() {
+
+        if (canvas == null) {
+            System.out.println("no current Canvas");
+            return;
+        }
+
         running = true;
         long previousTime = System.nanoTime();
         while (running) {
             long currentTime = System.nanoTime();
-            
+            var physicsObjects = canvas.getPhysicsObjects();
             try {
                 Thread.sleep(1);
             } catch (Exception e) {
@@ -42,10 +60,6 @@ public class PhysicsThread extends Thread {
         }
     }
 
-    public void add(PhysicsObject obj) {
-        physicsObjects.add(obj);
-    }
-    
     public static void addCollisionBox(CollisionBox box) {
         if (boxes == null) {
             boxes = new ArrayList<CollisionBox>();

@@ -13,16 +13,13 @@ public class NetworkThread extends Thread {
     private Socket socket;
     private DataInputStream dataIn;
     private DataOutputStream dataOut;
-    private ArrayList<NetworkOutObject> networkOutObjects;
-    private ArrayList<NetworkInObject> networkInObjects;
+
     private GameCanvas canvas;
     private int port;
     private String address;
 
     public NetworkThread(String address, int port, GameCanvas canvas) {
         this.canvas = canvas;
-        networkOutObjects = new ArrayList<NetworkOutObject>();
-        networkInObjects = new ArrayList<NetworkInObject>();
         this.address = address;
         this.port = port;
     }
@@ -38,16 +35,10 @@ public class NetworkThread extends Thread {
         }
     }
 
-    public void add(NetworkOutObject object) {
-        networkOutObjects.add(object);
-    }
-
-    public void add(NetworkInObject object) {
-        networkInObjects.add(object);
-    }
-
     public void run() {
         while (socket != null) {
+            var networkOutObjects = canvas.getNetworkOutObjects();
+            var networkInObjects = canvas.getNetworkInObjects();
             try {
                 for (NetworkOutObject networkOutObject : networkOutObjects) {
                     networkOutObject.send(dataOut);
@@ -58,13 +49,14 @@ public class NetworkThread extends Thread {
                 for (NetworkInObject networkInObject : networkInObjects) {
                     networkInObject.receive(input);
                 }
-                Thread.sleep(1);
 
             } catch (IOException e) {
                 System.out.println("Server Error");
-            } catch (InterruptedException e) {
-                System.out.println("Thread Error");
             }
         }
+    }
+
+    public void setCanvas(GameCanvas canvas) {
+        this.canvas = canvas;
     }
 }

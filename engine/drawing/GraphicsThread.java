@@ -44,4 +44,8 @@ public class GraphicsThread extends Thread {
         running = false;
         paused = false;
     }
+
+    public void setCanvas(GameCanvas canvas) {
+        this.canvas = canvas;
+    }
 }

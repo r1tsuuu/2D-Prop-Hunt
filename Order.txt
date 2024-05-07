@@ -12,7 +12,7 @@ Connects to the server
 
 Game Starter (Player 2) starts
 [Client CMD] ask for ip address and port
-Connects to the server
+Connects to the server                                  DONE
 
 2 Players connected (Server Starts)
 Game Server makes Player 1 Hider first and Player 2 Seeker

@@ -19,13 +19,19 @@ import java.util.ArrayList;
 public class GameCanvas extends JComponent {
 
     private ArrayList<DrawingObject> drawingObjects;
-    private PhysicsThread physicsThread;
-    private Input inputThread;
-    private NetworkThread networkThread;
-
+    private ArrayList<PhysicsObject> physicsObjects;
+    private ArrayList<InputObject> inputObjects;
+    private ArrayList<NetworkOutObject> networkOutObjects;
+    private ArrayList<NetworkInObject> networkInObjects;
+    private GameFrame frame;
     public GameCanvas(GameFrame frame) {
         setPreferredSize(new Dimension(800, 600));
         drawingObjects = new ArrayList<DrawingObject>();
+        physicsObjects = new ArrayList<PhysicsObject>();
+        inputObjects = new ArrayList<InputObject>();
+        networkOutObjects = new ArrayList<NetworkOutObject>();
+        networkInObjects = new ArrayList<NetworkInObject>();
+        this.frame = frame;
     }
 
     // called every frame
@@ -50,38 +56,46 @@ public class GameCanvas extends JComponent {
         if (gameObject instanceof DrawingObject drawingObject)
             drawingObjects.add(drawingObject);
         if (gameObject instanceof PhysicsObject physicsObject) {
-            physicsThread.add(physicsObject);
+            physicsObjects.add(physicsObject);
         }
         if (gameObject instanceof InputObject inputObject) {
-            inputThread.add(inputObject);
+            inputObjects.add(inputObject);
         }
         if (gameObject instanceof NetworkInObject networkInObject) {
-            networkThread.add(networkInObject);
+            networkInObjects.add(networkInObject);
         }
         if (gameObject instanceof NetworkOutObject networkOutObject) {
-            networkThread.add(networkOutObject);
+            networkOutObjects.add(networkOutObject);
         }
 
     }
 
-    public void setPhysicsThread(PhysicsThread thread) {
-        physicsThread = thread;
+    public ArrayList<PhysicsObject> getPhysicsObjects() {
+        return physicsObjects;
     }
 
-    public void setInputThread(Input thread) {
-        inputThread = thread;
+    public ArrayList<InputObject> getInputObjects() {
+        return inputObjects;
     }
 
-    public void setNetworkThread(NetworkThread thread) {
-        networkThread = thread;
+    public ArrayList<NetworkOutObject> getNetworkOutObjects() {
+        return networkOutObjects;
+    }
+
+    public ArrayList<NetworkInObject> getNetworkInObjects() {
+        return networkInObjects;
     }
 
     public void networkNotified(String input) {
 
     }
 
-    public void ready() {
+    protected void ready() {
 
+    }
+
+    protected GameFrame getFrame() {
+        return frame;
     }
 
 }

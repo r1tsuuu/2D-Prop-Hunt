@@ -5,8 +5,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 
+import engine.GameCanvas;
 import engine.GameFrame;
 import math.Vector2;
 
@@ -75,13 +75,19 @@ public class Input {
             }
         }
     }
-
-    private ArrayList<InputObject> inputObjects;
     private GameFrame frame;
+    private GameCanvas canvas;
 
     public Input(GameFrame frame) {
         this.frame = frame;
-        inputObjects = new ArrayList<InputObject>();
+    }
+    public Input(GameFrame frame, GameCanvas canvas) {
+        this(frame);
+        this.canvas = canvas;
+    }
+
+    public void setCanvas(GameCanvas canvas) {
+        this.canvas = canvas;
     }
 
     public void start() {
@@ -150,12 +156,9 @@ public class Input {
         frame.addMouseMotionListener(mouseMotionListener);
     }
 
-    public void add(InputObject object) {
-        System.out.println("object added");
-        inputObjects.add(object);
-    }
 
     public void notifyObjects(GameInput input) {
+        var inputObjects = canvas.getInputObjects();
         for (InputObject inputObject : inputObjects) {
             inputObject.inputEvent(input);
         }

@@ -5,33 +5,19 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import server.Player;
 
 public class GameServer {
-    public static ServerSocket server;
-    public static DataOutputStream dataOut1;
-    public static DataOutputStream dataOut2;
-    private static Player player1;
-    private static Player player2;
+    private static ServerSocket server;
+    private static DataOutputStream dataOut1; //hIDER
+    private static DataOutputStream dataOut2; //SEEKER
+    private static Socket s1;
+    private static Socket s2;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
         try {
-            server = new ServerSocket(4952);    
-            System.out.println("Server waiting");
-            Socket s1 = server.accept();
-            System.out.println("player 1 connected");
-            Socket s2 = server.accept();
-            System.out.println("player 2 connected");
-
-            dataOut1 = new DataOutputStream(s1.getOutputStream());
-            dataOut2 = new DataOutputStream(s2.getOutputStream());
-
-            dataOut1.writeUTF("party_complete");
-            dataOut2.writeUTF("party_complete");
-
-            dataOut1.flush();
-            dataOut2.flush();
-
+            waitConnection();
+            //preGame();
+            //TODO: 10 seconds waiting of Hider stuff like that
             String message = "";
             while (!message.equals("stop")) {
                 DataInputStream in1 = new DataInputStream(s1.getInputStream());
@@ -41,6 +27,40 @@ public class GameServer {
             }
         } catch (IOException e) {
             System.out.println("Server Error");
+        }
+    }
+
+    private static void waitConnection() {
+        try {
+            server = new ServerSocket(4952);    
+            System.out.println("Server waiting");
+            s1 = server.accept();
+            System.out.println("player 1 connected");
+            s2 = server.accept();
+            System.out.println("player 2 connected");
+
+            dataOut1 = new DataOutputStream(s1.getOutputStream());
+            dataOut2 = new DataOutputStream(s2.getOutputStream());
+            System.out.println("Players complete");
+            dataOut1.writeUTF("party_complete");
+            dataOut2.writeUTF("party_complete");
+
+            dataOut1.flush();
+            dataOut2.flush();
+        } catch (IOException e) {
+            System.out.println("wait ereror");
+        }
+    }
+
+    // set the hiders and the seekers
+    private static void preGame() {
+        try {
+            dataOut1.writeUTF("hider");
+            dataOut2.writeUTF("seeker");
+            dataOut1.flush();
+            dataOut2.flush();
+        } catch (IOException e) {
+            System.out.println("preGame server error");
         }
     }
 }

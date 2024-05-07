@@ -1,0 +1,57 @@
+Date : 2024-05-07 14:10:03
+Directory : c:\Users\ASUS\CSCI22\prop-hunt
+Total : 23 files,  865 codes, 12 comments, 216 blanks, all 1093 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |         23 |        865 |         12 |        216 |      1,093 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                   |         23 |        865 |         12 |        216 |      1,093 |
+| . (Files)                                                           |          2 |         63 |          2 |          9 |         74 |
+| engine                                                              |         14 |        540 |          1 |        133 |        674 |
+| engine (Files)                                                      |          3 |        129 |          1 |         34 |        164 |
+| engine\drawing                                                      |          3 |         84 |          0 |         20 |        104 |
+| engine\input                                                        |          2 |        136 |          0 |         35 |        171 |
+| engine\network                                                      |          3 |         70 |          0 |         17 |         87 |
+| engine\physics                                                      |          3 |        121 |          0 |         27 |        148 |
+| fsm                                                                 |          1 |          3 |          0 |          3 |          6 |
+| game                                                                |          5 |        191 |          0 |         51 |        242 |
+| math                                                                |          1 |         68 |          9 |         20 |         97 |
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                            | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\ASUS\CSCI22\prop-hunt\GameServer.java                      | Java     |         57 |          2 |          7 |         66 |
+| c:\Users\ASUS\CSCI22\prop-hunt\GameStarter.java                     | Java     |          6 |          0 |          2 |          8 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\GameCanvas.java               | Java     |         67 |          1 |         19 |         87 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\GameFrame.java                | Java     |         34 |          0 |         11 |         45 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\GameObject.java               | Java     |         28 |          0 |          4 |         32 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\drawing\DrawingObject.java    | Java     |          6 |          0 |          5 |         11 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\drawing\GraphicsThread.java   | Java     |         38 |          0 |         10 |         48 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\drawing\ImageObject.java      | Java     |         40 |          0 |          5 |         45 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\input\Input.java              | Java     |        131 |          0 |         32 |        163 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\input\InputObject.java        | Java     |          5 |          0 |          3 |          8 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\network\NetworkInObject.java  | Java     |          5 |          0 |          3 |          8 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\network\NetworkOutObject.java | Java     |          5 |          0 |          3 |          8 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\network\NetworkThread.java    | Java     |         60 |          0 |         11 |         71 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\physics\CollisionBox.java     | Java     |         71 |          0 |         15 |         86 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\physics\PhysicsObject.java    | Java     |          5 |          0 |          1 |          6 |
+| c:\Users\ASUS\CSCI22\prop-hunt\engine\physics\PhysicsThread.java    | Java     |         45 |          0 |         11 |         56 |
+| c:\Users\ASUS\CSCI22\prop-hunt\fsm\State.java                       | Java     |          3 |          0 |          3 |          6 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\Camera.java                     | Java     |         35 |          0 |         10 |         45 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\Character.java                  | Java     |         72 |          0 |         13 |         85 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\OtherCharacter.java             | Java     |         16 |          0 |          7 |         23 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\SampleScene.java                | Java     |         30 |          0 |          9 |         39 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\TestWall.java                   | Java     |         38 |          0 |         12 |         50 |
+| c:\Users\ASUS\CSCI22\prop-hunt\math\Vector2.java                    | Java     |         68 |          9 |         20 |         97 |
+| Total                                                               |          |        865 |         12 |        216 |      1,093 |
++---------------------------------------------------------------------+----------+------------+------------+------------+------------+

@@ -5,13 +5,14 @@ import java.io.IOException;
 
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
+import engine.network.NetworkInObject;
 import engine.network.NetworkOutObject;
 import engine.input.InputObject;
 import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
 import math.Vector2;
 
-public class Character extends ImageObject implements PhysicsObject, InputObject, NetworkOutObject {
+public class Character extends ImageObject implements PhysicsObject, InputObject, NetworkOutObject, NetworkInObject {
 
     boolean up, down, left, right = false;
     int speed = 250;
@@ -72,5 +73,12 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
         } catch (IOException e) {
             System.out.println("Connection Error");
         } 
+    }
+
+    @Override
+    public void receive(String input) {
+        if (!(input.equals("hider") || input.equals("seeker")))
+            return;
+        
     }
 }

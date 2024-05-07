@@ -27,12 +27,6 @@ public class SampleScene extends GameCanvas{
         add(new TestWall(new Vector2(300, 240), new Vector2(300, 10), Color.BLUE));
         add(new TestWall(new Vector2(300, 290), new Vector2(300, 10), Color.BLUE));
         add(player);
-    }
-    
-    @Override public void networkNotified(String input) {
-        if (input.equals("party_complete")) {
-            add(new OtherCharacter("impostor", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif"));
-            System.out.println("added new character!");
-        }
+        add(new OtherCharacter("impostor", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif"));
     }
 }
