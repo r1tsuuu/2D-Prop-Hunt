@@ -33,7 +33,8 @@ public class GameCanvas extends JComponent {
 
     // called every frame
     public void process(float delta) {
-        for (DrawingObject drawingObject : drawingObjects) {
+        for (int i = 0; i < drawingObjects.size(); i++) {
+            var drawingObject = drawingObjects.get(i);
             drawingObject.process(delta);
         }
         repaint();
@@ -43,7 +44,8 @@ public class GameCanvas extends JComponent {
     @Override
     public void paintComponent(Graphics g) {
         var g2d = (Graphics2D) g;
-        for (DrawingObject drawingObject : drawingObjects) {
+        for (int i = 0; i < drawingObjects.size(); i++) {
+            var drawingObject = drawingObjects.get(i);
             drawingObject.draw(g2d);
         }
     }

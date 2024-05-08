@@ -10,13 +10,14 @@ import math.Vector2;
 public class Camera extends GameObject implements DrawingObject {
 
     private GameCanvas canvas;
-    private Vector2 globalPosition;
     private Vector2 offset;
     private Vector2 center;
     private float scale;
 
+
+
     public Camera(Vector2 position, GameCanvas canvas, Vector2 offset, float scale) {
-        this.globalPosition = position;
+        setPosition(position);
         this.canvas = canvas;
         this.offset = offset;
         this.scale = scale;
@@ -26,7 +27,7 @@ public class Camera extends GameObject implements DrawingObject {
     @Override
     public void process(float delta) {
         var newCenter = calculateCenter();
-        center = Vector2.lerp(center, newCenter, 3 * delta);
+        center = Vector2.lerp(center, newCenter, 5 * delta);
     }
 
     @Override
@@ -36,9 +37,24 @@ public class Camera extends GameObject implements DrawingObject {
     }
 
     private Vector2 calculateCenter() {
-        return Vector2.multiply(globalPosition, -1)
+        return Vector2.multiply(getPosition(), -1)
         .add(Vector2.multiply(new Vector2(canvas.getSize()), 0.5f / scale))
         .add(offset);
     }
 
+    public Vector2 getCenter() {
+        return new Vector2(center);
+    }
+
+    public Vector2 getSize() {
+        return new Vector2(canvas.getSize());
+    }
+
+    public Vector2 getOffset() {
+        return offset;
+    }
+
+    public float getScale() {
+        return scale;
+    }
 }

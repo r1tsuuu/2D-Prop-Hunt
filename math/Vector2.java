@@ -89,6 +89,10 @@ public class Vector2 {
         return new Vector2(x, y);
     }
 
+    public float getAngle() {
+        return (float)Math.atan(y/x);
+    }
+
     @Override
     public String toString() {
         return String.format("%.5f %.5f", x, y);

@@ -14,13 +14,13 @@ import math.Vector2;
 
 public class Character extends ImageObject implements PhysicsObject, InputObject, NetworkOutObject, NetworkInObject {
 
-    boolean up, down, left, right = false;
-    int speed = 250;
-    CollisionBox collision;
+    private boolean up, down, left, right = false;
+    private int speed = 250;
+    protected Camera camera;
 
     public Character(String name, Vector2 position, String path) {
         super(name, position, path);
-        collision = new CollisionBox(this, position, getSize(), 0);
+        new CollisionBox(this, position, getSize(), 0);
     }
 
     @Override
@@ -78,7 +78,10 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
     @Override
     public void receive(String input) {
         if (!(input.equals("hider") || input.equals("seeker")))
-            return;
-        
+            return;   
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
     }
 }

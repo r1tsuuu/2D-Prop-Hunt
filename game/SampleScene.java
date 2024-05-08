@@ -21,8 +21,13 @@ public class SampleScene extends GameCanvas{
     }
 
     public void ready() {
-        player = new Character("Eren", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif");
+        if (perspective.equals("hider")) {
+            player = new Hider("Eren", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif");
+        } else if (perspective.equals("seeker")) {
+            player = new Seeker("Eren", new Vector2(Vector2.ZERO), "assets\\freedom.jpg");
+        }
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
+        player.setCamera(camera);
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         add(new TestWall(new Vector2(400, 30), new Vector2(100, 100), Color.RED));

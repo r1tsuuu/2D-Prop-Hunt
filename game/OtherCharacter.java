@@ -13,7 +13,6 @@ public class OtherCharacter extends ImageObject implements NetworkInObject{
 
     @Override
     public void receive(String input) {
-        if (input.equals("party_complete")) return;
         var result = input.split(" ");
         var newPos = new Vector2(Float.parseFloat(result[0]), Float.parseFloat(result[1]));
         setPosition(newPos);
