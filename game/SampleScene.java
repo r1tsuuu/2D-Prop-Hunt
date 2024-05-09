@@ -39,7 +39,7 @@ public class SampleScene extends GameCanvas {
         add(player);
         add(other);
         if (perspective.equals("seeker")) {
-            add(new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player));
+            add(new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this));
         }
         if (perspective.equals("hider")) {
             add(new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png"));

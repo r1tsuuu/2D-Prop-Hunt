@@ -1,11 +1,8 @@
 package game;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
 import engine.network.NetworkInObject;
 import engine.network.NetworkOutObject;
@@ -72,7 +69,7 @@ public class Character extends AnimatedSprite
     @Override
     public void send(DataOutputStream dataOut) {
         try {
-            dataOut.writeUTF(getPosition().toString());
+            dataOut.writeUTF("p " +getPosition().toString());
         } catch (IOException e) {
             System.out.println("Connection Error");
         }

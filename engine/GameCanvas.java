@@ -69,6 +69,23 @@ public class GameCanvas extends JComponent {
 
     }
 
+    public void remove(GameObject gameObject) {
+        if (gameObject instanceof DrawingObject drawingObject)
+            drawingObjects.remove(drawingObject);
+        if (gameObject instanceof PhysicsObject physicsObject) {
+            physicsObjects.remove(physicsObject);
+        }
+        if (gameObject instanceof InputObject inputObject) {
+            inputObjects.remove(inputObject);
+        }
+        if (gameObject instanceof NetworkInObject networkInObject) {
+            networkInObjects.remove(networkInObject);
+        }
+        if (gameObject instanceof NetworkOutObject networkOutObject) {
+            networkOutObjects.remove(networkOutObject);
+        }
+    }
+
     public ArrayList<PhysicsObject> getPhysicsObjects() {
         return physicsObjects;
     }

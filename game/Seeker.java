@@ -18,7 +18,6 @@ public class Seeker extends Character {
     public void inputEvent(GameInput input) {
         super.inputEvent(input);
         if (input instanceof GameInput.MouseMotion mouseMotion) {
-
             mouseFramePosition = mouseMotion.getPosition();
         }
     }

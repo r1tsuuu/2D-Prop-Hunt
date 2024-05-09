@@ -29,6 +29,11 @@ public class Vector2 {
         this.y = (float) d.getHeight();
     }
 
+    public Vector2(float angle) {
+        x = (float)Math.cos(angle);
+        y = (float)Math.sin(angle);
+    }
+
     public void set(Vector2 vector) {
         this.x = vector.x;
         this.y = vector.y;
