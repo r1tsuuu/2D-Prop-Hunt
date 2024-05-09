@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Graphics2D;
-
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
 import engine.input.InputObject;
