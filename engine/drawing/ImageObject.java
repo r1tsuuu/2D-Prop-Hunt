@@ -12,9 +12,11 @@ import math.Vector2;
 public class ImageObject extends GameObject implements DrawingObject {
     private BufferedImage image;
     private String path;
+    private float angle;
     public ImageObject(String name, Vector2 position, String path) {
         super(name, position);
         this.path = path;
+        angle = 0;
         image = loadImage();
     }
     private BufferedImage loadImage() {
@@ -32,6 +34,7 @@ public class ImageObject extends GameObject implements DrawingObject {
     public void draw(Graphics2D g2d) {
         var reset = g2d.getTransform();
         g2d.translate(getPosition().getX(), getPosition().getY());
+        g2d.rotate(angle, getSize().getX() / 2, getSize().getY() / 2);
         g2d.drawImage(image, 0, 0, null);
         g2d.setTransform(reset);
     }
@@ -40,5 +43,8 @@ public class ImageObject extends GameObject implements DrawingObject {
     }
     public Vector2 getSize() {
         return new Vector2(image.getWidth(), image.getHeight());
+    }
+    protected void setAngle(float angle) {
+        this.angle = angle;
     }
 }

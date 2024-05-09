@@ -29,6 +29,11 @@ public class Vector2 {
         this.y = (float) d.getHeight();
     }
 
+    public void set(Vector2 vector) {
+        this.x = vector.x;
+        this.y = vector.y;
+    }
+
     public float getX() {
         return x;
     }
@@ -90,7 +95,8 @@ public class Vector2 {
     }
 
     public float getAngle() {
-        return (float)Math.atan(y/x);
+        return (float) Math.atan2(y, x);
+        //return (float)Math.atan(y/x);
     }
 
     @Override
