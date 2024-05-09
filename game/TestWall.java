@@ -14,12 +14,14 @@ public class TestWall extends GameObject implements DrawingObject, PhysicsObject
 
     private Vector2 position;
     private Vector2 size;
+    private Vector2 endPosition;
     private Color color;
 
-    public TestWall(Vector2 position, Vector2 size, Color color) {
+    public TestWall(Vector2 position, Vector2 endPosition, Color color) {
         this.position = position;
-        this.size = size;
+        this.endPosition = endPosition;
         this.color = color;
+        size = Vector2.add(endPosition, Vector2.multiply(position, -1));
         new CollisionBox(this, position, size, 0);
     }
 

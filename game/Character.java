@@ -17,20 +17,13 @@ import math.Vector2;
 public class Character extends AnimatedSprite
         implements PhysicsObject, InputObject, NetworkOutObject, NetworkInObject {
 
-    private boolean up, down, left, right = false;
+    protected boolean up, down, left, right = false;
     private int speed = 250;
     protected Camera camera;
 
-    private final static int UP = 0;
-    private final static int LEFT = 1;
-    private final static int DOWN = 2;
-    private final static int RIGHT = 3;
-
-    public Character(String name, int w, int h, int fps, Vector2 position, String path) {
-        super(path, w, h, fps, position);
-
+    public Character(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
+        super(path, w, h, fps, position, xFrameCount);
         new CollisionBox(this, position, getSize(), 0);
-
     }
 
     @Override
