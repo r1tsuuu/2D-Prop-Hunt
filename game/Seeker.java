@@ -8,8 +8,8 @@ public class Seeker extends Character {
     float gunAngle;
     Vector2 mouseFramePosition;
 
-    public Seeker(String name, Vector2 position, String path) {
-        super(name, position, path);
+    public Seeker(String name, int w, int h, int fps, Vector2 position, String path) {
+        super(name, w, h, fps, position, path);
         gunAngle = 0;
         mouseFramePosition = Vector2.ZERO;
     }

@@ -8,7 +8,7 @@ import engine.GameCanvas;
 import engine.GameFrame;
 import engine.drawing.ImageObject;
 
-public class SampleScene extends GameCanvas{
+public class SampleScene extends GameCanvas {
 
     Character player;
     Camera camera;
@@ -22,9 +22,9 @@ public class SampleScene extends GameCanvas{
 
     public void ready() {
         if (perspective.equals("hider")) {
-            player = new Hider("Eren", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif");
+            player = new Hider("Eren", 16, 16, 12, new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif");
         } else if (perspective.equals("seeker")) {
-            player = new Seeker("Eren", new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif");
+            player = new Seeker("Eren", 16, 16, 12, new Vector2(Vector2.ZERO), "assets\\yorkie_walk_right.gif");
         }
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
         player.setCamera(camera);
@@ -42,9 +42,10 @@ public class SampleScene extends GameCanvas{
         if (perspective.equals("hider")) {
             add(new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png"));
         }
-    
+
         System.out.println("I am " + perspective);
     }
+
     @Override
     public void networkNotified(String input) {
 

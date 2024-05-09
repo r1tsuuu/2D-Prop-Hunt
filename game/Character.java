@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
@@ -12,15 +14,23 @@ import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
 import math.Vector2;
 
-public class Character extends ImageObject implements PhysicsObject, InputObject, NetworkOutObject, NetworkInObject {
+public class Character extends AnimatedSprite
+        implements PhysicsObject, InputObject, NetworkOutObject, NetworkInObject {
 
     private boolean up, down, left, right = false;
     private int speed = 250;
     protected Camera camera;
 
-    public Character(String name, Vector2 position, String path) {
-        super(name, position, path);
+    private final static int UP = 0;
+    private final static int LEFT = 1;
+    private final static int DOWN = 2;
+    private final static int RIGHT = 3;
+
+    public Character(String name, int w, int h, int fps, Vector2 position, String path) {
+        super(path, w, h, fps, position);
+
         new CollisionBox(this, position, getSize(), 0);
+
     }
 
     @Override
@@ -57,9 +67,9 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
     @Override
     public void collided(PhysicsObject other, String direction, float offset) {
         if (direction.equals("right"))
-            getPosition().add(new Vector2(-offset,0));
+            getPosition().add(new Vector2(-offset, 0));
         if (direction.equals("left"))
-            getPosition().add(new Vector2(offset,0));
+            getPosition().add(new Vector2(offset, 0));
         if (direction.equals("top"))
             getPosition().add(new Vector2(0, offset));
         if (direction.equals("below"))
@@ -72,13 +82,13 @@ public class Character extends ImageObject implements PhysicsObject, InputObject
             dataOut.writeUTF(getPosition().toString());
         } catch (IOException e) {
             System.out.println("Connection Error");
-        } 
+        }
     }
 
     @Override
     public void receive(String input) {
         if (!(input.equals("hider") || input.equals("seeker")))
-            return;   
+            return;
     }
 
     public void setCamera(Camera camera) {
