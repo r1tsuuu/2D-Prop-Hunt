@@ -12,11 +12,11 @@ public class OtherCharacter extends AnimatedSprite implements NetworkInObject{
 
     @Override
     public void receive(String input) {
-        System.out.println(input);
-        if (input.charAt(0) != 'p') return;
-        var result = input.split(" ");
-        var newPos = new Vector2(Float.parseFloat(result[1]), Float.parseFloat(result[2]));
-        getPosition().set(newPos);
+        if (input.charAt(0) == 'p') {
+            var result = input.split(" ");
+            var newPos = new Vector2(result[1], result[2]);
+            getPosition().set(newPos);
+        }
     }
     
 }

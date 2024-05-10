@@ -22,28 +22,24 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
     private Vector2 start;
     private Vector2 end;
     private boolean shot;
-
+    private float angle;
     private boolean dataSent;
+    private OtherCharacter other;
 
     public Bullet(Vector2 start, float angle, float length, OtherCharacter other) {
+        this.angle = angle;
         this.start = start;
+        this.other = other;
         end = new Vector2(angle).multiply(length).add(start);
         x1 = (int) start.getX();
         y1 = (int) start.getY();
         x2 = (int) end.getX();
         y2 = (int) end.getY();
         if (other == null) return;
-        
+
         shot = Vector2.lineIntersectsRectangle(start, end, other.getPosition(), other.getSize());
-        System.out.println("the boi got shot: " + shot);
-        System.out.println(start + "\t" + end);
-        System.out.println(other.getPosition() + "\t" + other.getSize());
+        System.out.println("the boi got shot: " + shot + "\t" + angle);
         dataSent = false;
-    }
-
-    @Override
-    public void process(float delta) {
-
     }
 
     @Override
@@ -58,12 +54,16 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
     @Override
     public void send(DataOutputStream dataOut) {
         try {
-            if (dataSent) return;
-            dataOut.writeUTF(String.format("b %s %s %s", start, end, shot));
+            if (dataSent || other == null) return;
+            dataOut.writeUTF(String.format("b %s %.9f %s", start, angle, shot));
             dataSent = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void process(float delta) {
     }
 
 }

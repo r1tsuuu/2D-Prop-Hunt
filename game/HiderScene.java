@@ -12,6 +12,8 @@ public class HiderScene extends GameCanvas {
     Camera camera;
     OtherCharacter other;
     ImageObject gun;
+    Bullet bullet;
+    
 
     public HiderScene(GameFrame frame) {
         super(frame);
@@ -32,5 +34,22 @@ public class HiderScene extends GameCanvas {
         add(player);
         add(other);
         add(gun);
+    }
+
+    @Override
+    public void networkNotified(String input) {
+        if (input.charAt(0) == 'b') {
+            var values = input.split(" ");
+            var start = new Vector2(values[1], values[2]);
+            var angle = Float.parseFloat(values[3]);
+            if (values[4].equals("true")) {
+                System.out.println("I have been shot!");
+            }
+            bullet = new Bullet(start, angle, 16*9, null);
+            add(bullet);
+        }
+        if (input.equals("rbullet")) {
+            remove(bullet);
+        }
     }
 }

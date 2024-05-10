@@ -1,5 +1,7 @@
 package engine;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 import engine.drawing.GraphicsThread;
@@ -37,6 +39,8 @@ public class GameFrame extends JFrame {
         networkThread.start();
         pack();
         setVisible(true);
+        setMinimumSize(new Dimension(800, 600));
+        setResizable(false);
     }
 
     public void startGame(String perspective) {

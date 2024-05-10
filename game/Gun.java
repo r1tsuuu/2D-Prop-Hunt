@@ -16,6 +16,7 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
     private Bullet bullet;
     private GameCanvas canvas;
     private boolean shot = false;
+    private boolean notifyRemoveBullet;
     private float t = 0;
     private OtherCharacter other;
 
@@ -25,6 +26,7 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         this.canvas = canvas;
         System.out.println(seeker);
         this.other = other;
+        shot = false;
     }
 
     @Override
@@ -49,12 +51,23 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         if (t > 0.2f) {
             shot = false;
             canvas.remove(bullet);
+            notifyRemoveBullet = true;
             t = 0;
         }
     }
 
     @Override
     public void send(DataOutputStream dataOut) {
+        if (notifyRemoveBullet) {
+            try {
+                dataOut.writeUTF("rbullet");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            notifyRemoveBullet = false;
+        }
+
+
     }
     
 }
