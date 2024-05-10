@@ -1,8 +1,5 @@
 package game;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import engine.input.Input.GameInput;
 import math.Vector2;
 
@@ -46,13 +43,5 @@ public class Seeker extends Character {
         if (left) y = 1;
         if (right) y = 3;
 
-    }
-    @Override
-    public void send(DataOutputStream dataOut) {
-        try {
-            dataOut.writeUTF("s " + getPosition().toString() + " " + x + " " + y + " " + gunAngle);
-        } catch (IOException e) {
-            System.out.println("Connection Error");
-        }
     }
 }

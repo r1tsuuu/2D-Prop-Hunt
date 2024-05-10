@@ -19,6 +19,10 @@ public class GameServer {
         try {
             waitConnection();
             preGame();
+            //Thread.sleep(10000);
+            dataOut2.writeUTF("seeker");
+            dataOut2.flush();
+
             String message = "";
             while (!message.equals("stop")) {
                 dataOut2.writeUTF(in1.readUTF());
@@ -60,13 +64,8 @@ public class GameServer {
             dataOut2.writeUTF("seeker");
             dataOut1.flush();
             dataOut2.flush();
-            Thread.sleep(10000);
-            dataOut2.writeUTF("seeker");
         } catch (IOException e) {
             System.out.println("preGame server error");
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 }

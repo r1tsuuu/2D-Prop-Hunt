@@ -48,16 +48,8 @@ public class HiderScene extends GameCanvas {
             bullet = new Bullet(start, angle, 16*9, null);
             add(bullet);
         }
-
-        if (input.charAt(0) == 's') {
-            var value = input.split(" ");
-            var gunAngle = Float.parseFloat(value[5]);
-            gun.setAngle(gunAngle);
-        }
-
         if (input.equals("rbullet")) {
             remove(bullet);
         }
-
     }
 }
