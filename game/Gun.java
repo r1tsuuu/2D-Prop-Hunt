@@ -32,21 +32,23 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
     @Override
     public void inputEvent(GameInput input) {
         if (input instanceof GameInput.Mouse mouseInput) {
-            if (mouseInput.getType() == GameInput.Mouse.CLICKED) {
-                if (shot) return;
-                bullet = new Bullet(new Vector2(getPosition()), seeker.getGunAngle(), 16*9, other);
+            if (mouseInput.getType() == GameInput.Mouse.PRESSED) {
+                if (shot)
+                    return;
+                bullet = new Bullet(new Vector2(getPosition()), seeker.getGunAngle(), 16 * 9, other);
                 canvas.add(bullet);
                 shot = true;
                 t = 0;
             }
         }
     }
+
     @Override
     public void process(float delta) {
         setAngle(seeker.getGunAngle());
         if (shot) {
             t += delta;
-            //System.out.println(t);
+            // System.out.println(t);
         }
         if (t > 0.2f) {
             shot = false;
@@ -58,16 +60,15 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
 
     @Override
     public void send(DataOutputStream dataOut) {
-        if (notifyRemoveBullet) {
-            try {
+        try {
+            if (notifyRemoveBullet) {
                 dataOut.writeUTF("rbullet");
-            } catch (IOException e) {
-                e.printStackTrace();
+                notifyRemoveBullet = false;
             }
-            notifyRemoveBullet = false;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-
     }
-    
+
 }

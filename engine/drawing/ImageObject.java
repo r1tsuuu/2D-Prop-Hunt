@@ -44,7 +44,7 @@ public class ImageObject extends GameObject implements DrawingObject {
     public Vector2 getSize() {
         return new Vector2(image.getWidth(), image.getHeight());
     }
-    protected void setAngle(float angle) {
+    public void setAngle(float angle) {
         this.angle = angle;
     }
 }

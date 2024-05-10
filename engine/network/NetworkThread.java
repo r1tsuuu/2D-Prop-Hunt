@@ -42,8 +42,8 @@ public class NetworkThread extends Thread {
                 for (int i = 0; i < networkOutObjects.size(); i++) {
                     var networkOutObject = networkOutObjects.get(i);
                     networkOutObject.send(dataOut);
-                    dataOut.flush();
                 }
+                dataOut.flush();
                 var input = dataIn.readUTF();
                 canvas.networkNotified(input);
                 for (NetworkInObject networkInObject : networkInObjects) {
