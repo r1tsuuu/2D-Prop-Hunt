@@ -1,5 +1,7 @@
 package game;
 
+import java.io.DataOutputStream;
+
 import engine.GameCanvas;
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
