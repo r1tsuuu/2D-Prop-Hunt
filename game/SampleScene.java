@@ -25,7 +25,7 @@ public class SampleScene extends GameCanvas {
                     "assets\\professor_walk_cycle_no_hat.png", 12, 9);
 
         } else if (perspective.equals("seeker")) {
-            player = new Seeker();
+            player = new Seeker(new Vector2(928, 560));
             other = new OtherCharacter("impostor", new Vector2(Vector2.ZERO), 18, 18, "assets\\yorkie animation.png",
                     12, 4);
         }
@@ -191,13 +191,6 @@ public class SampleScene extends GameCanvas {
         add(new TestWall(new Vector2(1697, 956), new Vector2(1856, 959)));
         add(player);
         add(other);
-        if (perspective.equals("seeker")) {
-            add(new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this));
-        }
-        if (perspective.equals("hider")) {
-            add(new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png"));
-        }
-
         System.out.println("I am " + perspective);
     }
 

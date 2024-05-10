@@ -1,5 +1,8 @@
 package game;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import engine.input.Input.GameInput;
 import math.Vector2;
 
@@ -7,9 +10,9 @@ public class Seeker extends Character {
 
     float gunAngle;
     Vector2 mouseFramePosition;
-
-    public Seeker() {
-        super("Seeker", 24, 24, 12, new Vector2(Vector2.ZERO), "assets\\professor_walk_cycle_no_hat.png", 9);
+    
+    public Seeker(Vector2 position) {
+        super("Seeker", 24, 24, 12, position, "assets\\professor_walk_cycle_no_hat.png", 9);
         gunAngle = 0;
         mouseFramePosition = Vector2.ZERO;
     }
@@ -43,5 +46,13 @@ public class Seeker extends Character {
         if (left) y = 1;
         if (right) y = 3;
 
+    }
+    @Override
+    public void send(DataOutputStream dataOut) {
+        try {
+            dataOut.writeUTF("s " + getPosition().toString() + " " + x + " " + y + " " + gunAngle);
+        } catch (IOException e) {
+            System.out.println("Connection Error");
+        }
     }
 }

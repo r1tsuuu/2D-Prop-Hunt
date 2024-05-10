@@ -1,13 +1,16 @@
 package engine;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 import engine.drawing.GraphicsThread;
 import engine.input.Input;
 import engine.network.NetworkThread;
 import engine.physics.PhysicsThread;
+import game.HiderScene;
 import game.Lobby;
-import game.SampleScene;
+import game.SeekerScene;
 
 public class GameFrame extends JFrame {
     private PhysicsThread physicsThread;
@@ -36,11 +39,16 @@ public class GameFrame extends JFrame {
         networkThread.start();
         pack();
         setVisible(true);
+        setMinimumSize(new Dimension(800, 600));
+        setResizable(false);
     }
 
     public void startGame(String perspective) {
         remove(currentScene);
-        currentScene = new SampleScene(this, perspective);
+        if (perspective.equals("seeker"))
+            currentScene = new SeekerScene(this);
+        else if (perspective.equals("hider"))
+            currentScene = new HiderScene(this);
         graphicsThread.setCanvas(currentScene);
         physicsThread.setCanvas(currentScene);
         inputThread.setCanvas(currentScene);

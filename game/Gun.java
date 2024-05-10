@@ -32,7 +32,7 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
     @Override
     public void inputEvent(GameInput input) {
         if (input instanceof GameInput.Mouse mouseInput) {
-            if (mouseInput.getType() == GameInput.Mouse.CLICKED) {
+            if (mouseInput.getType() == GameInput.Mouse.PRESSED) {
                 if (shot)
                     return;
                 bullet = new Bullet(new Vector2(getPosition()), seeker.getGunAngle(), 16 * 9, other);
@@ -60,13 +60,13 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
 
     @Override
     public void send(DataOutputStream dataOut) {
-        if (notifyRemoveBullet) {
-            try {
+        try {
+            if (notifyRemoveBullet) {
                 dataOut.writeUTF("rbullet");
-            } catch (IOException e) {
-                e.printStackTrace();
+                notifyRemoveBullet = false;
             }
-            notifyRemoveBullet = false;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

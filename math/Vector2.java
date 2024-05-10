@@ -45,7 +45,6 @@ public class Vector2 {
         y = Float.parseFloat(values[1]);
     }
 
-
     public Vector2(String x, String y) {
         this(x + " " + y);
     }
@@ -113,6 +112,24 @@ public class Vector2 {
     public float getAngle() {
         return (float) Math.atan2(y, x);
         // return (float)Math.atan(y/x);
+    }
+
+    public static boolean ccw(Vector2 a, Vector2 b, Vector2 c) {
+        return (c.y - a.y) * (b.x - a.x) > (b.y-a.y)*(c.x-a.x);
+    }
+
+    public static boolean lineIntersectsLine(Vector2 a, Vector2 b, Vector2 c, Vector2 d) {
+        return ccw(a,c,d) != ccw(b,c,d) && ccw(a,b,c) != ccw(a,b,d);
+    }
+
+    public static boolean lineIntersectsRectangle(Vector2 a, Vector2 b, Vector2 rect, Vector2 size) {
+        var end = Vector2.add(rect, size);
+        boolean left = lineIntersectsLine(a, b, rect, new Vector2(rect.x,end.y));
+        boolean right = lineIntersectsLine(a, b, new Vector2(end.x, rect.y), end);
+        boolean top = lineIntersectsLine(a, b, rect, new Vector2(end.x, rect.y));
+        boolean bot = lineIntersectsLine(a, b, new Vector2(rect.x, end.y), end);
+        
+        return left || right || top || bot;
     }
 
     @Override
