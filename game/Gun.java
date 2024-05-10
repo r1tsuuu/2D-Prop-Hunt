@@ -1,16 +1,12 @@
 package game;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import engine.GameCanvas;
 import engine.drawing.ImageObject;
 import engine.input.Input.GameInput;
-import engine.network.NetworkOutObject;
 import engine.input.InputObject;
 import math.Vector2;
 
-public class Gun extends ImageObject implements InputObject, NetworkOutObject {
+public class Gun extends ImageObject implements InputObject {
 
     private Seeker seeker;
     private Bullet bullet;
@@ -18,15 +14,12 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
     private boolean shot = false;
     private boolean notifyRemoveBullet;
     private float t = 0;
-    private OtherCharacter other;
 
-    public Gun(String name, Vector2 position, String path, Seeker seeker, GameCanvas canvas, OtherCharacter other) {
+    public Gun(String name, Vector2 position, String path, Seeker seeker, GameCanvas canvas) {
         super(name, position, path);
         this.seeker = seeker;
         this.canvas = canvas;
         System.out.println(seeker);
-        this.other = other;
-        shot = false;
     }
 
     @Override
@@ -39,15 +32,18 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
                 canvas.add(bullet);
                 shot = true;
                 t = 0;
+                System.out.println("shot");
             }
         }
     }
+
 
     @Override
     public void process(float delta) {
         setAngle(seeker.getGunAngle());
         if (shot) {
             t += delta;
+            // System.out.println(t);
             // System.out.println(t);
         }
         if (t > 0.2f) {
@@ -70,5 +66,6 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         }
 
     }
+
 
 }

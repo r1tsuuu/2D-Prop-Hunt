@@ -57,7 +57,7 @@ public class GameServer {
     private static void preGame() {
         try {
             dataOut1.writeUTF("hider");
-            dataOut2.writeUTF("wait");
+            dataOut2.writeUTF("seeker");
             dataOut1.flush();
             dataOut2.flush();
             Thread.sleep(10000);

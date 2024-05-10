@@ -88,7 +88,7 @@ public class Sprite extends GameObject implements DrawingObject {
 
     @Override
     public void process(float delta) {
-        // dgds
+        // nothing
     }
 
     @Override

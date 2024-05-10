@@ -7,5 +7,4 @@ public class Hider extends Character {
         super(name, w, h, fps, position, path, xFrameCount);
     }
 
-    
 }
