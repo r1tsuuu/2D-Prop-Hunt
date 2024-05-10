@@ -69,7 +69,7 @@ public class Character extends AnimatedSprite
     @Override
     public void send(DataOutputStream dataOut) {
         try {
-            dataOut.writeUTF("p " +getPosition().toString());
+            dataOut.writeUTF("p " + getPosition().toString());
         } catch (IOException e) {
             System.out.println("Connection Error");
         }

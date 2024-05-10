@@ -30,8 +30,8 @@ public class Vector2 {
     }
 
     public Vector2(float angle) {
-        x = (float)Math.cos(angle);
-        y = (float)Math.sin(angle);
+        x = (float) Math.cos(angle);
+        y = (float) Math.sin(angle);
     }
 
     public void set(Vector2 vector) {
@@ -101,7 +101,7 @@ public class Vector2 {
 
     public float getAngle() {
         return (float) Math.atan2(y, x);
-        //return (float)Math.atan(y/x);
+        // return (float)Math.atan(y/x);
     }
 
     @Override

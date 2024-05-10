@@ -25,8 +25,9 @@ public class Gun extends ImageObject implements InputObject {
     public void inputEvent(GameInput input) {
         if (input instanceof GameInput.Mouse mouseInput) {
             if (mouseInput.getType() == GameInput.Mouse.CLICKED) {
-                if (shot) return;
-                bullet = new Bullet(new Vector2(getPosition()), seeker.getGunAngle(), 16*9);
+                if (shot)
+                    return;
+                bullet = new Bullet(new Vector2(getPosition()), seeker.getGunAngle(), 16 * 9);
                 canvas.add(bullet);
                 shot = true;
                 t = 0;
@@ -34,12 +35,13 @@ public class Gun extends ImageObject implements InputObject {
             }
         }
     }
+
     @Override
     public void process(float delta) {
         setAngle(seeker.getGunAngle());
         if (shot) {
             t += delta;
-            //System.out.println(t);
+            // System.out.println(t);
         }
         if (t > 0.2f) {
             shot = false;
@@ -48,5 +50,5 @@ public class Gun extends ImageObject implements InputObject {
             System.out.println("whoosh");
         }
     }
-    
+
 }
