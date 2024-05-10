@@ -19,7 +19,10 @@ public class GameServer {
         try {
             waitConnection();
             preGame();
-            //TODO: 10 seconds waiting of Hider stuff like that
+            //Thread.sleep(10000);
+            dataOut2.writeUTF("seeker");
+            dataOut2.flush();
+
             String message = "";
             while (!message.equals("stop")) {
                 dataOut2.writeUTF(in1.readUTF());
@@ -58,7 +61,7 @@ public class GameServer {
     private static void preGame() {
         try {
             dataOut1.writeUTF("hider");
-            dataOut2.writeUTF("seeker");
+            dataOut2.writeUTF("wait");
             dataOut1.flush();
             dataOut2.flush();
         } catch (IOException e) {
