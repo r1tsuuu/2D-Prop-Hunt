@@ -23,7 +23,7 @@ public class NetworkThread extends Thread {
         this.port = port;
     }
 
-    public void establishConnection(){
+    public void establishConnection() {
         try {
             socket = new Socket(address, port);
             dataOut = new DataOutputStream(socket.getOutputStream());
@@ -39,7 +39,8 @@ public class NetworkThread extends Thread {
             var networkOutObjects = canvas.getNetworkOutObjects();
             var networkInObjects = canvas.getNetworkInObjects();
             try {
-                for (NetworkOutObject networkOutObject : networkOutObjects) {
+                for (int i = 0; i < networkOutObjects.size(); i++) {
+                    var networkOutObject = networkOutObjects.get(i);
                     networkOutObject.send(dataOut);
                     dataOut.flush();
                 }
