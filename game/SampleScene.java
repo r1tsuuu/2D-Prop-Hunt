@@ -191,8 +191,9 @@ public class SampleScene extends GameCanvas {
         add(new TestWall(new Vector2(1697, 956), new Vector2(1856, 959)));
         add(player);
         add(other);
+        
         if (perspective.equals("seeker")) {
-            add(new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this));
+            add(new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this, other));
         }
         if (perspective.equals("hider")) {
             add(new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png"));
@@ -203,6 +204,11 @@ public class SampleScene extends GameCanvas {
 
     @Override
     public void networkNotified(String input) {
-
+        if (perspective.equals("hider")) {
+            if (input.charAt(0) == 'b') {
+                var bulletValues = input.split(" ");
+                System.out.println(input);
+            }
+        }
     }
 }
