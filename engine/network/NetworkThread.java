@@ -45,6 +45,7 @@ public class NetworkThread extends Thread {
                 }
                 dataOut.flush();
                 var input = dataIn.readUTF();
+                if (input.equals("STOP")) break;
                 canvas.networkNotified(input);
                 for (NetworkInObject networkInObject : networkInObjects) {
                     networkInObject.receive(input);
