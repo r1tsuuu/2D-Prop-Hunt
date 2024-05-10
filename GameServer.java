@@ -61,7 +61,7 @@ public class GameServer {
     private static void preGame() {
         try {
             dataOut1.writeUTF("hider");
-            dataOut2.writeUTF("seeker");
+            dataOut2.writeUTF("wait");
             dataOut1.flush();
             dataOut2.flush();
         } catch (IOException e) {

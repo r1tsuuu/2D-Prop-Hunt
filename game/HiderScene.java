@@ -13,7 +13,6 @@ public class HiderScene extends GameCanvas {
     OtherCharacter other;
     ImageObject gun;
     Bullet bullet;
-    
 
     public HiderScene(GameFrame frame) {
         super(frame);
@@ -27,10 +26,10 @@ public class HiderScene extends GameCanvas {
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
         player.setCamera(camera);
         gun = new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png");
-        
+
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
-        add(new TestWall(new Vector2(400, 30), new Vector2(500, 130), Color.RED));
+        add(new TestWall(new Vector2(400, 30), new Vector2(500, 130)));
         add(player);
         add(other);
         add(gun);
@@ -45,7 +44,7 @@ public class HiderScene extends GameCanvas {
             if (values[4].equals("true")) {
                 System.out.println("I have been shot!");
             }
-            bullet = new Bullet(start, angle, 16*9, null);
+            bullet = new Bullet(start, angle, 16 * 9, null);
             add(bullet);
         }
         if (input.equals("rbullet")) {

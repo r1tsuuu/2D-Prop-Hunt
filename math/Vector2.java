@@ -39,6 +39,17 @@ public class Vector2 {
         this.y = vector.y;
     }
 
+    public Vector2(String string) {
+        var values = string.split(" ");
+        x = Float.parseFloat(values[0]);
+        y = Float.parseFloat(values[1]);
+    }
+
+
+    public Vector2(String x, String y) {
+        this(x + " " + y);
+    }
+
     public float getX() {
         return x;
     }
