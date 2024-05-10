@@ -14,7 +14,7 @@ public class GameServer {
     private static DataInputStream in2;
     private static Socket s1;
     private static Socket s2;
-    private static final float gameDuration = 10;
+    private static final float gameDuration = 60;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
         try {
