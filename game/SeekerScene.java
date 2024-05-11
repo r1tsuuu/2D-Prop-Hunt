@@ -9,7 +9,7 @@ import math.Vector2;
 
 public class SeekerScene extends GameCanvas {
 
-    Character player;
+    Seeker player;
     Camera camera;
     OtherCharacter other;
     String perspective;
@@ -32,6 +32,7 @@ public class SeekerScene extends GameCanvas {
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
+        add(new Tracker(player, other));
         add(player);
         add(other);
         add(gun);

@@ -8,7 +8,7 @@ import engine.drawing.ImageObject;
 import math.Vector2;
 
 public class HiderScene extends GameCanvas {
-    Character player;
+    Hider player;
     Camera camera;
     OtherCharacter other;
     ImageObject gun;
@@ -44,6 +44,7 @@ public class HiderScene extends GameCanvas {
             var angle = Float.parseFloat(values[3]);
             if (values[4].equals("true")) {
                 System.out.println("I have been shot!");
+                player.shot();
             }
             bullet = new Bullet(start, angle, 16 * 9, null);
             add(bullet);
