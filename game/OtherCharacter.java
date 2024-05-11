@@ -15,8 +15,8 @@ public class OtherCharacter extends AnimatedSprite implements NetworkInObject{
         if (input.charAt(0) == 'p' || input.charAt(0) == 's') {
             var result = input.split(" ");
             var newPos = new Vector2(result[1], result[2]);
+            x = Integer.parseInt(result[3]);
             if (input.charAt(0) == 's') {
-                x = Integer.parseInt(result[3]);
                 y = Integer.parseInt(result[4]);
             }
             getPosition().set(newPos);
