@@ -3,6 +3,7 @@ package engine.physics;
 import java.util.ArrayList;
 
 import engine.GameCanvas;
+import game.TestWall;
 
 public class PhysicsThread extends Thread {
 
@@ -49,6 +50,8 @@ public class PhysicsThread extends Thread {
 
             for (int i = 0; i < boxes.size(); i++) {
                 for (int j = i + 1; j < boxes.size(); j++) {
+                    if (boxes.get(i).getOwner() instanceof TestWall && boxes.get(j).getOwner() instanceof TestWall)
+                        continue;
                     if (boxes.get(i).isColliding(boxes.get(j))) {
                         boxes.get(i).boxCollided(boxes.get(j));
                         boxes.get(j).boxCollided(boxes.get(i));

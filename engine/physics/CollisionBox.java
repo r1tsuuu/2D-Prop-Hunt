@@ -9,6 +9,10 @@ public class CollisionBox {
     private int zLevel;
     private PhysicsObject owner;
 
+    public PhysicsObject getOwner() {
+        return owner;
+    }
+
     public Vector2 getPosition() {
         return position;
     }
