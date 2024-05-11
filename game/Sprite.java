@@ -3,7 +3,6 @@ package game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -18,7 +17,7 @@ public class Sprite extends GameObject implements DrawingObject {
     protected int w, h, x, y;
     private int wSprite, hSprite;
 
-    private String file;
+    protected String file;
 
     public Sprite(String file, int w, int h, int x, int y, Vector2 position) {
         super(position);
@@ -30,7 +29,7 @@ public class Sprite extends GameObject implements DrawingObject {
         loadSprite();
     }
 
-    private void loadSprite() {
+    public void loadSprite() {
         try {
             System.out.println("Loading: " + file + "...");
             SPRITESHEET = ImageIO.read(new File(file));
@@ -57,6 +56,10 @@ public class Sprite extends GameObject implements DrawingObject {
         this.h = h;
         hSprite = SPRITESHEET.getHeight() / h;
         loadSpriteArray();
+    }
+
+    public void setFile(String spriteFile) {
+        this.file = spriteFile;
     }
 
     public int getWidth() {
