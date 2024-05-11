@@ -1,7 +1,5 @@
 package game;
 
-import java.util.ArrayList;
-
 import engine.GameCanvas;
 import engine.GameFrame;
 import engine.drawing.ImageObject;
@@ -15,7 +13,7 @@ public class Lobby extends GameCanvas {
 
     @Override
     public void ready() {
-        // add(new ImageObject("Ereh", Vector2.ZERO, "assets\\freedom.jpg"));
+        add(new ImageObject("Lobby", Vector2.ZERO, "assets\\Lobby.png"));
     }
 
     @Override
