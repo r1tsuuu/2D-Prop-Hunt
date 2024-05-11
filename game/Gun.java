@@ -27,6 +27,7 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         System.out.println(seeker);
         this.other = other;
         shot = false;
+        offset = Vector2.multiply(seeker.getSize(), 0.20f);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
             if (mouseInput.getType() == GameInput.Mouse.PRESSED) {
                 if (shot)
                     return;
-                bullet = new Bullet(new Vector2(getPosition()), seeker.getGunAngle(), 16 * 9, other);
+                bullet = new Bullet(new Vector2(getPosition()).add(Vector2.multiply(seeker.getSize(), 0.5f)), seeker.getGunAngle(), 16 * 9, other);
                 canvas.add(bullet);
                 shot = true;
                 t = 0;

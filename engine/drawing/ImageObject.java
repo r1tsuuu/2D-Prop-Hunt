@@ -13,10 +13,12 @@ public class ImageObject extends GameObject implements DrawingObject {
     private BufferedImage image;
     private String path;
     private float angle;
+    protected Vector2 offset;
     public ImageObject(String name, Vector2 position, String path) {
         super(name, position);
         this.path = path;
         angle = 0;
+        offset = new Vector2(Vector2.ZERO);
         image = loadImage();
     }
     private BufferedImage loadImage() {
@@ -33,7 +35,7 @@ public class ImageObject extends GameObject implements DrawingObject {
     @Override
     public void draw(Graphics2D g2d) {
         var reset = g2d.getTransform();
-        g2d.translate(getPosition().getX(), getPosition().getY());
+        g2d.translate(getPosition().getX() + offset.getX(), getPosition().getY() + offset.getY());
         g2d.rotate(angle, getSize().getX() / 2, getSize().getY() / 2);
         g2d.drawImage(image, 0, 0, null);
         g2d.setTransform(reset);

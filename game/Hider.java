@@ -1,17 +1,23 @@
 package game;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import java.util.ArrayList;
 
 import engine.input.Input.GameInput;
 import math.Vector2;
 
 public class Hider extends Character {
+    private boolean sendShot;
+
     private Sprite sprite;
     private Prop currentProp;
     private ArrayList<Prop> availableProps;
 
     public Hider(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(name, w, h, fps, position, path, xFrameCount);
+        sendShot = false;
         sprite = new AnimatedSprite(currentProp.getFile(), 16, 16, 10, position, 0);
 
         availableProps = new ArrayList<Prop>();
@@ -47,6 +53,24 @@ public class Hider extends Character {
                 right = inputKey.getType() == GameInput.Key.TYPED;
             if (inputKey.getKey() == 'f')
                 changeProp();
+        }
+    }
+
+    public void shot() {
+        sendShot = true;
+    }
+
+    @Override
+    public void send(DataOutputStream dataOut) {
+        try {
+            dataOut.writeUTF("p " + getPosition().toString());
+            if (sendShot) {
+                dataOut.writeUTF("winSeeker");
+                System.out.println("sending my loss");
+                sendShot = false;
+            }
+        } catch (IOException e) {
+            System.out.println("Connection Error");
         }
     }
 

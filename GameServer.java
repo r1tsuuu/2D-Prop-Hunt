@@ -14,18 +14,29 @@ public class GameServer {
     private static DataInputStream in2;
     private static Socket s1;
     private static Socket s2;
+    private static final float gameDuration = 60;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
         try {
             waitConnection();
             preGame();
             String message = "";
-            while (!message.equals("stop")) {
-                dataOut2.writeUTF(in1.readUTF());
+            long max = System.currentTimeMillis() + (long)(gameDuration * 1000);
+            while (System.currentTimeMillis() < max) {
+                message = in1.readUTF();
+                if (message.equals("winSeeker"))
+                {
+                    seekerWin();
+                    return;
+                }
+                dataOut2.writeUTF(message);
                 dataOut1.writeUTF(in2.readUTF());
             }
+            hiderWin();
+
         } catch (IOException e) {
             System.out.println("Server Error");
+            System.exit(0);
         }
     }
 
@@ -64,9 +75,26 @@ public class GameServer {
             dataOut2.writeUTF("seeker");
         } catch (IOException e) {
             System.out.println("preGame server error");
-        } //catch (InterruptedException e) {
+        }
+    }
+
+    private static void seekerWin() {
+        System.out.println("seeker win");
+        endGame();
+    }
+
+    private static void hiderWin() {
+        System.out.println("hider win");
+        endGame();
+    }
+
+    private static void endGame() {
+        try {
+            dataOut1.writeUTF("STOP");
+            dataOut2.writeUTF("STOP");
+        } catch (IOException e) {
             // TODO Auto-generated catch block
-            //e.printStackTrace();
-        //}
+            e.printStackTrace();
+        }
     }
 }
