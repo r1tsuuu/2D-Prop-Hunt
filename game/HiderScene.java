@@ -19,7 +19,7 @@ public class HiderScene extends GameCanvas {
     }
 
     public void ready() {
-        player = new Hider("Eren", 18, 18, 12, new Vector2(928, 560), "assets\\yorkie animation.png", 4);
+        player = new Hider("Eren", 16, 16, 12, new Vector2(928, 560), "assets\\props.png", 4);
         other = new OtherCharacter("OtherSeeker", new Vector2(928, 560), 24, 24,
                 "assets\\professor_walk_cycle_no_hat.png",
                 12, 9);
@@ -27,7 +27,7 @@ public class HiderScene extends GameCanvas {
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
         player.setCamera(camera);
         gun = new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png");
-        
+
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
