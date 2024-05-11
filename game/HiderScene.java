@@ -19,7 +19,7 @@ public class HiderScene extends GameCanvas {
     }
 
     public void ready() {
-        player = new Hider("Eren", 16, 16, 0, new Vector2(928, 560), "assets\\props.png", 5);
+        player = new Hider("Eren", 16, 16, 0, new Vector2(928, 560), "assets\\props.png", 102);
         other = new OtherCharacter("OtherSeeker", new Vector2(928, 560), 24, 24,
                 "assets\\professor_walk_cycle_no_hat.png",
                 12, 9);
