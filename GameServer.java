@@ -14,7 +14,7 @@ public class GameServer {
     private static DataInputStream in2;
     private static Socket s1;
     private static Socket s2;
-    private static final float gameDuration = 60;
+    private static final float gameDuration = 10;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
         try {
@@ -60,7 +60,7 @@ public class GameServer {
             dataOut2.flush();
             
         } catch (IOException e) {
-            System.out.println("wait ereror");
+            System.out.println("wait error");
         }
     }
 
@@ -71,20 +71,36 @@ public class GameServer {
             dataOut2.writeUTF("wait");
             dataOut1.flush();
             dataOut2.flush();
-            //Thread.sleep(10000);
+            Thread.sleep(10000);
             dataOut2.writeUTF("seeker");
         } catch (IOException e) {
             System.out.println("preGame server error");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
     private static void seekerWin() {
         System.out.println("seeker win");
+        try {
+            dataOut1.writeUTF("defeat");
+            dataOut2.writeUTF("victory");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         endGame();
     }
 
     private static void hiderWin() {
         System.out.println("hider win");
+        try {
+            dataOut1.writeUTF("victory");
+            dataOut2.writeUTF("defeat");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         endGame();
     }
 
@@ -92,6 +108,9 @@ public class GameServer {
         try {
             dataOut1.writeUTF("STOP");
             dataOut2.writeUTF("STOP");
+            dataOut1.flush();
+            dataOut2.flush();
+            System.out.println("Sent stop");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -39,6 +39,12 @@ public class SeekerScene extends GameCanvas {
 
     }
 
+    @Override
+    public void networkNotified(String input) {
+        if (input.equals("victory") || input.equals("defeat"))
+            getFrame().endGame(input);
+    }
+
     private void addWalls() {
         add(new TestWall(new Vector2(11, 11), new Vector2(16, 1205)));
         add(new TestWall(new Vector2(11, 11), new Vector2(1861, 16)));

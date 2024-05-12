@@ -52,7 +52,8 @@ public class NetworkThread extends Thread {
                 }
 
             } catch (IOException e) {
-                System.out.println("Server Error");
+                System.out.println(e);
+                break;
             }
         }
     }
