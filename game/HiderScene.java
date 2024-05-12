@@ -60,6 +60,9 @@ public class HiderScene extends GameCanvas {
             remove(bullet);
         }
 
+        if (input.equals("victory") || input.equals("defeat")) {
+            getFrame().endGame(input);
+        }
     }
 
     private void addWalls() {
