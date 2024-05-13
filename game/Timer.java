@@ -19,6 +19,7 @@ public class Timer implements NetworkInObject {
     Digit ones;
     Digit tens;
     Digit hund;
+    float scale;
 
     public Digit getOnes() {
         return ones;
@@ -33,9 +34,9 @@ public class Timer implements NetworkInObject {
     }
 
     public Timer(Vector2 position) {
-        hund = new Digit(position, new Vector2(-10, -20));
-        tens = new Digit(position, new Vector2(0, -20));
-        ones = new Digit(position, new Vector2(10, -20));
+        hund = new Digit(position, new Vector2(0, -10));
+        tens = new Digit(position, new Vector2(7, -10));
+        ones = new Digit(position, new Vector2(14, -10));
     }
 
     @Override
@@ -48,5 +49,4 @@ public class Timer implements NetworkInObject {
             ones.setDigit(formatted.charAt(2));
         }
     }
-
 }

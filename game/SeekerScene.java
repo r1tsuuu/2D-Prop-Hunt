@@ -27,7 +27,7 @@ public class SeekerScene extends GameCanvas {
         player.setCamera(camera);
         gun = new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this, other);
         timer = new Timer(player.getPosition());
-        
+
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
@@ -47,6 +47,13 @@ public class SeekerScene extends GameCanvas {
     public void networkNotified(String input) {
         if (input.equals("victory") || input.equals("defeat"))
             getFrame().endGame(input);
+        if (input.charAt(0) == 'd') {
+            var values = input.split(" ");
+            float posX = Float.parseFloat(values[1]);
+            float posY = Float.parseFloat(values[2]);
+            int xFrame = Integer.parseInt(values[3]);
+            add(new Sprite("assets\\props.png", 16, 16, xFrame, 0, new Vector2(posX, posY)));
+        }
     }
 
     private void addWalls() {

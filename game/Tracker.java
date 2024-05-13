@@ -39,7 +39,7 @@ public class Tracker extends GameObject implements DrawingObject, InputObject {
         maxTime = 30;
         time = 0;
         maxDistance = 50 * 16;
-        minDistance = 10 * 16;
+        minDistance = 16 * 16;
     }
 
     @Override
@@ -59,6 +59,7 @@ public class Tracker extends GameObject implements DrawingObject, InputObject {
             }
 
             float distance = Vector2.getDistance(getPosition(), other.getPosition());
+            distance = Math.min(distance, maxDistance - 0.01f);
             float alpha = distance / maxDistance;
             if (distance < minDistance)
             {

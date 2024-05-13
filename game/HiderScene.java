@@ -35,6 +35,8 @@ public class HiderScene extends GameCanvas {
                 add(prop);
             }
         });
+
+        Timer timer = new Timer(player.getPosition());
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
@@ -42,6 +44,10 @@ public class HiderScene extends GameCanvas {
         add(other);
         add(gun);
         add(visionBox);
+        addNetworkInObject(timer);
+        add(timer.getHund());
+        add(timer.getTens());
+        add(timer.getOnes());
     }
 
     @Override

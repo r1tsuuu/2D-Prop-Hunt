@@ -15,6 +15,7 @@ public class GameServer {
     private static Socket s1;
     private static Socket s2;
     private static final float gameDuration = 120;
+    private static final float gracePeriod = 10;
     private static int timeLeft;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
@@ -95,12 +96,22 @@ public class GameServer {
             //dataOut2.writeUTF("wait");
             dataOut1.flush();
             dataOut2.flush();
-            Thread.sleep(10000);
+            long max = System.currentTimeMillis() + (long)(gracePeriod * 1000);
+            timeLeft = (int) gracePeriod;
+            System.out.println("STARTING GRACE PERIOD");
+            while (System.currentTimeMillis() < max) {
+                // in1.readUTF();
+                System.out.println(timeLeft);
+                if (timeLeft - 1 > (max - System.currentTimeMillis()) / 1000f) {
+                    timeLeft--;
+                    System.out.println(timeLeft);
+                    dataOut1.writeUTF("t " + timeLeft);
+                }
+            }
+            System.out.println("ENDING GRACE PERIOD");
             dataOut2.writeUTF("seeker");
         } catch (IOException e) {
             System.out.println("preGame server error");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 

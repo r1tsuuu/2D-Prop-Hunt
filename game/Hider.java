@@ -11,12 +11,15 @@ public class Hider extends Character {
     private int propCount;
     private HiderListener listener;
     private boolean newPropAdded;
+    private Vector2 mostRecentFakePropPosition;
+    private boolean canAddFakeProps;
 
     public Hider(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(name, w, h, fps, position, path, xFrameCount);
         sendShot = false;
         propCount = xFrameCount;
         newPropAdded = false;
+        canAddFakeProps = false;
     }
 
     public void changeProp() {
@@ -26,8 +29,10 @@ public class Hider extends Character {
     }
 
     public void spawnProp() {
+        if (!canAddFakeProps) return;
         int random = x;
         Sprite prop = new Sprite("assets\\props.png", w, h, random, 0, new Vector2(getPosition()));
+        mostRecentFakePropPosition = prop.getPosition();
         if (listener != null) {
             listener.onPropSpawn(prop);
         }
@@ -76,11 +81,19 @@ public class Hider extends Character {
                 sendShot = false;
             }
             if (newPropAdded) {
-                dataOut.writeUTF("d " + x);
+                dataOut.writeUTF("d " + mostRecentFakePropPosition + " " + x);
+                newPropAdded = false;
             }
         } catch (IOException e) {
             System.out.println("Connection Error");
         }
     }
 
+    // Give the hider the ability to place fake props when the seeker is now moving
+    @Override
+    public void receive(String input) {
+        if (input.charAt(0) == 's') {
+            canAddFakeProps = true;
+        }
+    }
 }

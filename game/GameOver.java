@@ -5,7 +5,9 @@ import java.io.IOException;
 
 import engine.GameCanvas;
 import engine.GameFrame;
+import engine.drawing.ImageObject;
 import engine.network.NetworkOutObject;
+import math.Vector2;
 
 public class GameOver extends GameCanvas {
 
@@ -18,7 +20,10 @@ public class GameOver extends GameCanvas {
 
     @Override
     public void ready() {
-        System.out.println(result);
+        if (result.equals("victory"))
+            add(new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\WinScreen.png"));
+        else if (result.equals("defeat"))
+            add(new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\LoseScreen.png"));
     }
 
     public void replay(boolean b) {
