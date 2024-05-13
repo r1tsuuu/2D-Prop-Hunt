@@ -57,7 +57,7 @@ public class Hider extends Player {
             if (inputKey.getKey() == 'f' && inputKey.getType() == GameInput.Key.PRESSED) {
                 changeProp();
             }
-            if (inputKey.getKey() == 't' && inputKey.getType() == GameInput.Key.PRESSED) {
+            if (inputKey.getKey() == 't' && inputKey.getType() == GameInput.Key.RELEASED) {
                 spawnProp();
             }
         }
