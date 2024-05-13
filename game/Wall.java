@@ -10,36 +10,30 @@ import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
 import math.Vector2;
 
-public class TestWall extends GameObject implements DrawingObject, PhysicsObject {
+public class Wall extends GameObject implements PhysicsObject {
 
     private Vector2 position;
     private Vector2 size;
 
-    public TestWall(Vector2 position, Vector2 endPosition) {
+    /**
+     * Instantiates a wall given start and end positions that form a rectangle.
+     */
+    public Wall(Vector2 position, Vector2 endPosition) {
         this.position = position;
         size = Vector2.add(endPosition, Vector2.multiply(position, -1));
         new CollisionBox(this, position, size, 0);
     }
 
+    /**
+     * Required function when implementing Physics object
+     */
     @Override
     public void physicsProcess(float delta) {
     }
 
-    @Override
-    public void process(float delta) {
-
-    }
-
-    @Override
-    public void draw(Graphics2D g2d) {
-        var reset = g2d.getTransform();
-        // Set the color with transparency directly in the drawing method
-        g2d.setColor(new Color(0, 0, 0, 0));
-        g2d.translate(position.getX(), position.getY());
-        g2d.fill(new Rectangle2D.Double(0, 0, size.getX(), size.getY()));
-        g2d.setTransform(reset);
-    }
-
+    /**
+     * invoked when collided with another PhysicsObject.
+     */
     @Override
     public void collided(PhysicsObject other, String direction, float offset) {
     }

@@ -1,3 +1,24 @@
+/**
+	The Sprite class provides a more robust implementation of Images. It
+    allows the usage of subimages to display subareas of the image.
+
+    @author Alinus Abuke (230073)	
+    @author Neil Aldous Biason (230940)
+    @version 13 May 2024
+
+    We have not discussed the Java language code in our program 
+    with anyone other than our instructor or the teaching assistants 
+    assigned to this course.
+
+    We have not used Java language code obtained from another student, 
+    or any other unauthorized source, either modified or unmodified.
+
+    If any Java language code or documentation used in our program 
+    was obtained from another source, such as a textbook or website, 
+    that has been clearly noted with a proper citation in the comments 
+    of our program.
+**/
+
 package game;
 
 import java.awt.Graphics2D;
@@ -20,6 +41,16 @@ public class Sprite extends GameObject implements DrawingObject {
 
     protected String file;
 
+    /**
+     * Instantiates a new Sprite Object give the following
+     * 
+     * @param file     path
+     * @param w        width of each subimage
+     * @param h        height of each subimage
+     * @param x        subimage position from left to right
+     * @param y        subimage position from top to bottom
+     * @param position the position of the image.
+     */
     public Sprite(String file, int w, int h, int x, int y, Vector2 position) {
         super(position);
         offset = Vector2.ZERO;
@@ -31,6 +62,9 @@ public class Sprite extends GameObject implements DrawingObject {
         loadSprite();
     }
 
+    /**
+     * Loads the spritesheet and storese.
+     */
     public void loadSprite() {
         try {
             SPRITESHEET = ImageIO.read(new File(file));
@@ -42,39 +76,16 @@ public class Sprite extends GameObject implements DrawingObject {
         }
     }
 
-    public void setSize(int width, int height) {
-        setWidth(width);
-        setHeight(height);
-    }
-
-    public void setWidth(int w) {
-        this.w = w;
-        wSprite = SPRITESHEET.getWidth() / w;
-        loadSpriteArray();
-    }
-
-    public void setHeight(int h) {
-        this.h = h;
-        hSprite = SPRITESHEET.getHeight() / h;
-        loadSpriteArray();
-    }
-
-    public void setFile(String spriteFile) {
-        this.file = spriteFile;
-    }
-
+    /**
+     * Sets the offset of the image drawn.
+     */
     public void setOffset(Vector2 offset) {
         this.offset = offset;
     }
 
-    public int getWidth() {
-        return w;
-    }
-
-    public int getHeight() {
-        return h;
-    }
-
+    /**
+     * Loads the array that contains each buffered image.
+     */
     private void loadSpriteArray() {
         spriteArray = new BufferedImage[hSprite][wSprite];
 
@@ -86,19 +97,35 @@ public class Sprite extends GameObject implements DrawingObject {
 
     }
 
+    /**
+     * returns the subimage given x and y values.
+     * 
+     * @return BufferedImage subimage
+     */
     public BufferedImage getSprite(int x, int y) {
         return SPRITESHEET.getSubimage(x * w, y * h, w, h);
     }
 
+    /**
+     * Returns the size of the sprite
+     * 
+     * @return Vector2 size;
+     */
     public Vector2 getSize() {
         return new Vector2(w, h);
     }
 
+    /**
+     * Required function when implementing DrawingObject
+     */
     @Override
     public void process(float delta) {
         // STATIC, NOT REQ FOR THIS CLASS
     }
 
+    /**
+     * Display the selected sprite on the position with offset.
+     */
     @Override
     public void draw(Graphics2D g2d) {
         g2d.drawImage(spriteArray[y][x], (int) (getPosition().getX() + offset.getX()),
