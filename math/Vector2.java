@@ -139,4 +139,8 @@ public class Vector2 {
     public String toString() {
         return String.format("%.5f %.5f", x, y);
     }
+
+    public boolean equals(Vector2 vector) {
+        return x == vector.x && y == vector.y;
+    }
 }

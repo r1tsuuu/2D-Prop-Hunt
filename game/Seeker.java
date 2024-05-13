@@ -31,7 +31,7 @@ public class Seeker extends Character {
 
     @Override
     public void process(float delta) {
-        if (up || down || left || right)
+        if (!velocity.equals(Vector2.ZERO))
             super.process(delta);
 
         Vector2 topLeft = Vector2.multiply(camera.getCenter(), -1);

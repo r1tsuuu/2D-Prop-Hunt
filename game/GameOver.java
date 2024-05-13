@@ -12,6 +12,7 @@ import math.Vector2;
 public class GameOver extends GameCanvas {
 
     String result;
+    private ImageObject imageResult;
 
     public GameOver(GameFrame frame, String result) {
         super(frame);
@@ -21,9 +22,10 @@ public class GameOver extends GameCanvas {
     @Override
     public void ready() {
         if (result.equals("victory"))
-            add(new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\WinScreen.png"));
+            imageResult = new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\WinScreen.png");
         else if (result.equals("defeat"))
-            add(new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\LoseScreen.png"));
+            imageResult = new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\LoseScreen.png");
+        add(imageResult);
     }
 
     public void replay(boolean b) {
@@ -47,6 +49,10 @@ public class GameOver extends GameCanvas {
     public void networkNotified(String input) {
         if (input.equals("hider") || input.equals("seeker"))
             getFrame().startGame(input);
+        if (input.equals("wait")) {
+            remove(imageResult);
+            add(new ImageObject("Lobby", Vector2.ZERO, "assets\\LobbyScreens\\SeekerBlindfold.png"));
+        }
         if (input.equals("STOP"))
             System.exit(0);
     }

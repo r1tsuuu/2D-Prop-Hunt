@@ -17,6 +17,7 @@ public class Character extends AnimatedSprite
     protected boolean up, down, left, right = false;
     private int speed = 250;
     protected Camera camera;
+    protected Vector2 velocity;
 
     public Character(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(path, w, h, fps, position, xFrameCount);
@@ -25,18 +26,20 @@ public class Character extends AnimatedSprite
 
     @Override
     public void physicsProcess(float delta) {
+        velocity = new Vector2(Vector2.ZERO);
         if (up) {
-            getPosition().add(Vector2.multiply(Vector2.UP, speed * delta));
+            velocity.add(Vector2.multiply(Vector2.UP, speed * delta));
         }
         if (down) {
-            getPosition().add(Vector2.multiply(Vector2.DOWN, speed * delta));
+            velocity.add(Vector2.multiply(Vector2.DOWN, speed * delta));
         }
         if (left) {
-            getPosition().add(Vector2.multiply(Vector2.LEFT, speed * delta));
+            velocity.add(Vector2.multiply(Vector2.LEFT, speed * delta));
         }
         if (right) {
-            getPosition().add(Vector2.multiply(Vector2.RIGHT, speed * delta));
+            velocity.add(Vector2.multiply(Vector2.RIGHT, speed * delta));
         }
+        getPosition().add(velocity);
     }
 
     @Override

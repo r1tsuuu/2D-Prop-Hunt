@@ -20,7 +20,7 @@ Seeker POV
 - Time locked Tracker       [DONE]
 
 POVS
-- Visible Timer             [OTW]
+- Visible Timer             [DONE]
 - Sound Effects             
 
 IF TIME PERMITS
