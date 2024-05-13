@@ -27,7 +27,7 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         System.out.println(seeker);
         this.other = other;
         shot = false;
-        offset = Vector2.multiply(seeker.getSize(), 0.20f);
+        setOffset(Vector2.multiply(seeker.getSize(), 0.20f));
     }
 
     @Override

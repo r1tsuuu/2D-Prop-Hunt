@@ -1,3 +1,24 @@
+/**
+	The GameServer class is the server the player clients connect to
+    when playing Prop Hunt. It provides basic networking functionality
+    and waits sends and receives by turn.
+
+    @author Alinus Abuke (230073)	
+    @author Neil Aldous Biason (230940)
+    @version 13 May 2024
+
+    We have not discussed the Java language code in our program 
+    with anyone other than our instructor or the teaching assistants 
+    assigned to this course.
+
+    We have not used Java language code obtained from another student, 
+    or any other unauthorized source, either modified or unmodified.
+
+    If any Java language code or documentation used in our program 
+    was obtained from another source, such as a textbook or website, 
+    that has been clearly noted with a proper citation in the comments 
+    of our program.
+**/
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -5,11 +26,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
 public class GameServer {
     private static ServerSocket server;
-    private static DataOutputStream dataOut1; //hIDER
-    private static DataOutputStream dataOut2; //SEEKER
+    private static DataOutputStream dataOut1; // hIDER
+    private static DataOutputStream dataOut2; // SEEKER
     private static DataInputStream in1;
     private static DataInputStream in2;
     private static Socket s1;
@@ -17,12 +37,16 @@ public class GameServer {
     private static final float gameDuration = 120;
     private static final float gracePeriod = 10;
     private static int timeLeft;
-    public static void main(String[] args) throws InterruptedException{
+
+    /**
+     * Main class starts the server and repeats the game until one player decides to
+     * quit. After the game, switches the hider and the seeker.
+     */
+    public static void main(String[] args) {
         System.out.println("Server starting");
         waitConnection();
         boolean playing = true;
-        while (playing){
-            System.out.println("starting the damn game");
+        while (playing) {
             playGame();
             playing = replay();
             if (playing) {
@@ -39,16 +63,18 @@ public class GameServer {
         }
     }
 
+    /**
+     * playGame starts a round of hide and seek.
+     */
     private static void playGame() {
         try {
             preGame();
             String message = "";
-            long max = System.currentTimeMillis() + (long)(gameDuration * 1000);
-            timeLeft = (int)gameDuration;
+            long max = System.currentTimeMillis() + (long) (gameDuration * 1000);
+            timeLeft = (int) gameDuration;
             while (System.currentTimeMillis() < max) {
                 message = in1.readUTF();
-                if (message.equals("winSeeker"))
-                {
+                if (message.equals("winSeeker")) {
                     seekerWin();
                     return;
                 }
@@ -69,9 +95,12 @@ public class GameServer {
         }
     }
 
+    /**
+     * waitConnection waits for a clients to connect in port 4952
+     */
     private static void waitConnection() {
         try {
-            server = new ServerSocket(4952);    
+            server = new ServerSocket(4952);
             System.out.println("Server waiting");
             s1 = server.accept();
             System.out.println("player 1 connected");
@@ -83,20 +112,24 @@ public class GameServer {
             in1 = new DataInputStream(s1.getInputStream());
             in2 = new DataInputStream(s2.getInputStream());
             System.out.println("Players complete");
-            
+
         } catch (IOException e) {
             System.out.println("Server Error");
         }
     }
 
-    // set the hiders and the seekers
+    /**
+     * Sets the hiders and the seekers.
+     * Gives grace period for the chosen hider to hide.
+     * After the grace period, the seeker is gievn the go signal to go.
+     */
     private static void preGame() {
         try {
             dataOut1.writeUTF("hider");
             dataOut2.writeUTF("wait");
             dataOut1.flush();
             dataOut2.flush();
-            long max = System.currentTimeMillis() + (long)(gracePeriod * 1000);
+            long max = System.currentTimeMillis() + (long) (gracePeriod * 1000);
             timeLeft = (int) gracePeriod;
             System.out.println("STARTING GRACE PERIOD");
             while (System.currentTimeMillis() < max) {
@@ -115,6 +148,9 @@ public class GameServer {
         }
     }
 
+    /**
+     * Called by playGame when the seeker wins
+     */
     private static void seekerWin() {
         System.out.println("seeker win");
         try {
@@ -123,9 +159,11 @@ public class GameServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //endGame();
     }
 
+    /**
+     * Called by playGame when the seeker wins
+     */
     private static void hiderWin() {
         System.out.println("hider win");
         try {
@@ -134,9 +172,11 @@ public class GameServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // endGame();
     }
 
+    /**
+     * Called by mainLoop when at least 1 player decides to stop playing
+     */
     private static void endGame() {
         try {
             dataOut1.writeUTF("STOP");
@@ -149,6 +189,13 @@ public class GameServer {
         }
     }
 
+    /**
+     * After the game, the server waits for the clients to send whether they
+     * want a new round or not.
+     * If the players want a new round. The roles are switched and the hider
+     * becomes the next seeker and the seeker becomes the next hider.
+     * @return play a new round.
+     */
     private static boolean replay() {
         try {
             String replay1 = in1.readUTF();
@@ -158,7 +205,7 @@ public class GameServer {
 
             var ans1 = replay1.split(" ");
             var ans2 = replay2.split(" ");
-            
+
             System.out.println(replay1);
             System.out.println(replay2);
 

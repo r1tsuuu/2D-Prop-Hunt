@@ -1,3 +1,25 @@
+/**
+	The GameFrame is the Game window of the Game.
+    It receives input which is detected by the network thread and contains
+    the GameCanas that displays visual information.
+
+    @author Alinus Abuke (230073)	
+    @author Neil Aldous Biason (230940)
+    @version 13 May 2024
+
+    We have not discussed the Java language code in our program 
+    with anyone other than our instructor or the teaching assistants 
+    assigned to this course.
+
+    We have not used Java language code obtained from another student, 
+    or any other unauthorized source, either modified or unmodified.
+
+    If any Java language code or documentation used in our program 
+    was obtained from another source, such as a textbook or website, 
+    that has been clearly noted with a proper citation in the comments 
+    of our program.
+**/
+
 package engine;
 
 import java.awt.Dimension;
@@ -22,13 +44,20 @@ public class GameFrame extends JFrame {
     private String address;
     private int port;
 
+    /**
+     * Instantiates a new GameFrame with title
+     * 
+     * @param title title of the window.
+     */
     public GameFrame(String title) {
         super(title);
         askNetworkDetails();
         initialize();
-
     }
 
+    /**
+     * Displays a JOptionPane that asks for the server address and port.
+     */
     private void askNetworkDetails() {
         address = JOptionPane.showInputDialog(
                 this, "Enter Address:", "Prop Hunt: Hide and Seek", JOptionPane.PLAIN_MESSAGE);
@@ -41,6 +70,9 @@ public class GameFrame extends JFrame {
         port = Integer.parseInt(sPort);
     }
 
+    /**
+     * Initializes the threads and the default scene.
+     */
     private void initialize() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         currentScene = new Lobby(this);
@@ -65,6 +97,12 @@ public class GameFrame extends JFrame {
         setResizable(false);
     }
 
+    /**
+     * Called to start the game. Switches the scene to the corresponding chosen
+     * perspective.
+     * 
+     * @param perspective of the player: ie hider or seeker.
+     */
     public void startGame(String perspective) {
         if (perspective.equals("seeker"))
             setScene(new SeekerScene(this));
@@ -72,6 +110,11 @@ public class GameFrame extends JFrame {
             setScene(new HiderScene(this));
     }
 
+    /**
+     * Called to end the round. Switches the scene to the GameOver scene.
+     * 
+     * @param result of the previous round.
+     */
     public void endGame(String result) {
         var gameOverScene = new GameOver(this, result);
         setScene(gameOverScene);
@@ -86,6 +129,11 @@ public class GameFrame extends JFrame {
         }
     }
 
+    /**
+     * Sets the current scene to the selected scene
+     * 
+     * @param scene the new scene to display and process.
+     */
     private void setScene(GameCanvas scene) {
         remove(currentScene);
         currentScene = scene;
