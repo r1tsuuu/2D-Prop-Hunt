@@ -25,6 +25,7 @@ public class Tracker extends GameObject implements DrawingObject, InputObject {
     float maxTime;
     float maxDistance;
     float minDistance;
+    boolean canTrack;
     
 
     public Tracker(Seeker seeker, OtherCharacter other) {
@@ -40,10 +41,13 @@ public class Tracker extends GameObject implements DrawingObject, InputObject {
         time = 0;
         maxDistance = 50 * 16;
         minDistance = 16 * 16;
+        canTrack = false;
     }
 
     @Override
     public void process(float delta) {
+        if (!canTrack)
+            return;
         var angle = Vector2.add(other.getPosition(), Vector2.multiply(getPosition(), -1)).getAngle();
         start = Vector2.add(getPosition(), Vector2.multiply(seeker.getSize(), 0.5f));
         endPos = new Vector2(angle).multiply(length)
@@ -87,6 +91,10 @@ public class Tracker extends GameObject implements DrawingObject, InputObject {
                 visible = !visible;
             }
         }
+    }
+
+    public void setCanTrack(boolean canTrack) {
+        this.canTrack = canTrack;
     }
 
 }

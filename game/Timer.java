@@ -16,6 +16,11 @@ public class Timer implements NetworkInObject {
         }
     }
 
+    public interface TimerListener {
+        public void onTimeReceived(int time);
+    }
+
+    TimerListener listener;
     Digit ones;
     Digit tens;
     Digit hund;
@@ -47,6 +52,12 @@ public class Timer implements NetworkInObject {
             hund.setDigit(formatted.charAt(0));
             tens.setDigit(formatted.charAt(1));
             ones.setDigit(formatted.charAt(2));
+            if (listener != null)
+                listener.onTimeReceived(value);
         }
+    }
+
+    public void setListener(TimerListener listener) {
+        this.listener = listener;
     }
 }
