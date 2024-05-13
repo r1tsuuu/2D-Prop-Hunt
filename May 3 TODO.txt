@@ -1,19 +1,35 @@
 May 13 3pm to 12am TODO
 
+MUST DO
+- Bug Fixing
+- Clean Up Code
+- Header Comments
+
 Game result screen
-- Victory (need image)
-- Defeat (need image)
+- Victory (need image)      [DONE]
+- Defeat (need image)       [DONE]
 - Replayability 			[DONE]
 
 Hider
-- Fake Props
+- Fake Props                [DONE]
 
 Hider POV
-- Seeker vision box
+- Seeker vision box         [DONE]
 
 Seeker POV
 - Time locked Tracker
 
 POVS
-- Visible Timer             https://opengameart.org/content/numbers-0-9-7x10px
-- Sound Effects
+- Visible Timer             [OTW]
+- Sound Effects             
+
+IF TIME PERMITS
+- Fix vision box accuracy
+
+SFX
+- Win Music
+- Lose Music
+- Gun Sound
+- Background Music
+- Waiting for the hider to hide music(Elevator/Lobby)
+- 
