@@ -10,7 +10,7 @@ public class Seeker extends Player {
 
     float gunAngle;
     Vector2 mouseFramePosition;
-    
+
     public Seeker(Vector2 position) {
         super("Seeker", 24, 24, 12, position, "assets\\professor_walk_cycle_no_hat.png", 9);
         gunAngle = 0;
@@ -23,6 +23,7 @@ public class Seeker extends Player {
         if (input instanceof GameInput.MouseMotion mouseMotion) {
             mouseFramePosition = mouseMotion.getPosition();
         }
+
     }
 
     public float getGunAngle() {
@@ -41,12 +42,17 @@ public class Seeker extends Player {
 
         gunAngle = localMouse.getAngle();
 
-        if (up) y = 0;
-        if (down) y = 2;
-        if (left) y = 1;
-        if (right) y = 3;
+        if (up)
+            y = 0;
+        if (down)
+            y = 2;
+        if (left)
+            y = 1;
+        if (right)
+            y = 3;
 
     }
+
     @Override
     public void send(DataOutputStream dataOut) {
         try {
