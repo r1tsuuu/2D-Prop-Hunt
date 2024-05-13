@@ -22,6 +22,7 @@ public class Player extends AnimatedSprite
     public Player(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(path, w, h, fps, position, xFrameCount);
         new CollisionBox(this, position, getSize(), 0);
+        velocity = new Vector2(Vector2.ZERO);
     }
 
     @Override
