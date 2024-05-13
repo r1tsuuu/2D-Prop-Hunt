@@ -75,9 +75,17 @@ public class GameFrame extends JFrame {
     public void endGame(String result) {
         var gameOverScene = new GameOver(this, result);
         setScene(gameOverScene);
+
         int replay = JOptionPane.showConfirmDialog(this, "Play Again?", "Prop Hunt: Hide and Seek",
                 JOptionPane.YES_NO_OPTION);
-        gameOverScene.replay(replay == JOptionPane.YES_OPTION);
+
+        if (replay == JOptionPane.YES_OPTION) {
+            gameOverScene.replay(true);
+            JOptionPane.showMessageDialog(this, "Waiting for the other player to accept...", "Prop Hunt: Hide and Seek",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            gameOverScene.replay(false);
+        }
     }
 
     private void setScene(GameCanvas scene) {
