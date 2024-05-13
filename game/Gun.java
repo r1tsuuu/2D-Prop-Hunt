@@ -36,7 +36,8 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
             if (mouseInput.getType() == GameInput.Mouse.PRESSED) {
                 if (shot)
                     return;
-                bullet = new Bullet(new Vector2(getPosition()).add(Vector2.multiply(seeker.getSize(), 0.5f)), seeker.getGunAngle(), 16 * 9, other);
+                bullet = new Bullet(new Vector2(getPosition()).add(Vector2.multiply(seeker.getSize(), 0.5f)),
+                        seeker.getGunAngle(), 16 * 9, other);
                 canvas.add(bullet);
                 shot = true;
                 t = 0;
@@ -49,7 +50,6 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         setAngle(seeker.getGunAngle());
         if (shot) {
             t += delta;
-            // System.out.println(t);
         }
         if (t > 0.2f) {
             shot = false;

@@ -14,6 +14,7 @@ public class ImageObject extends GameObject implements DrawingObject {
     private String path;
     private float angle;
     protected Vector2 offset;
+
     public ImageObject(String name, Vector2 position, String path) {
         super(name, position);
         this.path = path;
@@ -21,6 +22,7 @@ public class ImageObject extends GameObject implements DrawingObject {
         offset = new Vector2(Vector2.ZERO);
         image = loadImage();
     }
+
     private BufferedImage loadImage() {
         System.out.println("attempting loading " + getName());
         BufferedImage temp = null;
@@ -32,6 +34,11 @@ public class ImageObject extends GameObject implements DrawingObject {
         }
         return temp;
     }
+
+    public void setOffset(Vector2 offset) {
+        this.offset = offset;
+    }
+
     @Override
     public void draw(Graphics2D g2d) {
         var reset = g2d.getTransform();
@@ -40,12 +47,15 @@ public class ImageObject extends GameObject implements DrawingObject {
         g2d.drawImage(image, 0, 0, null);
         g2d.setTransform(reset);
     }
+
     @Override
     public void process(float delta) {
     }
+
     public Vector2 getSize() {
         return new Vector2(image.getWidth(), image.getHeight());
     }
+
     public void setAngle(float angle) {
         this.angle = angle;
     }
