@@ -11,6 +11,7 @@ public class HiderScene extends GameCanvas {
     OtherCharacter other;
     ImageObject gun;
     Bullet bullet;
+    ImageObject visionBox;
 
     public HiderScene(GameFrame frame) {
         super(frame);
@@ -22,9 +23,11 @@ public class HiderScene extends GameCanvas {
                 "assets\\professor_walk_cycle_no_hat.png",
                 12, 9);
 
-        camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
+        camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 1f);
         player.setCamera(camera);
         gun = new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png");
+        visionBox = new ImageObject("Seeker Vision Box", other.getPosition(), "assets\\visionProMaxSeekerPOV.png");
+        visionBox.setOffset(new Vector2(-200, -150));
 
         player.setListener(new HiderListener() {
             @Override
@@ -38,6 +41,7 @@ public class HiderScene extends GameCanvas {
         add(player);
         add(other);
         add(gun);
+        add(visionBox);
     }
 
     @Override
