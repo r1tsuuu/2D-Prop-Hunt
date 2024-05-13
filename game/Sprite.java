@@ -16,11 +16,13 @@ public class Sprite extends GameObject implements DrawingObject {
     private BufferedImage[][] spriteArray;
     protected int w, h, x, y;
     private int wSprite, hSprite;
+    private Vector2 offset;
 
     protected String file;
 
     public Sprite(String file, int w, int h, int x, int y, Vector2 position) {
         super(position);
+        offset = Vector2.ZERO;
         this.file = file;
         this.w = w;
         this.h = h;
@@ -62,6 +64,10 @@ public class Sprite extends GameObject implements DrawingObject {
         this.file = spriteFile;
     }
 
+    public void setOffset(Vector2 offset) {
+        this.offset = offset;
+    }
+
     public int getWidth() {
         return w;
     }
@@ -96,6 +102,6 @@ public class Sprite extends GameObject implements DrawingObject {
 
     @Override
     public void draw(Graphics2D g2d) {
-        g2d.drawImage(spriteArray[y][x], (int) getPosition().getX(), (int) getPosition().getY(), null);
+        g2d.drawImage(spriteArray[y][x], (int) (getPosition().getX() + offset.getX()), (int) (getPosition().getY() + offset.getY()), null);
     }
 }

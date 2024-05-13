@@ -14,7 +14,8 @@ public class GameServer {
     private static DataInputStream in2;
     private static Socket s1;
     private static Socket s2;
-    private static final float gameDuration = 10;
+    private static final float gameDuration = 120;
+    private static int timeLeft;
     public static void main(String[] args) throws InterruptedException{
         System.out.println("Server starting");
         waitConnection();
@@ -39,10 +40,10 @@ public class GameServer {
 
     private static void playGame() {
         try {
-            
             preGame();
             String message = "";
             long max = System.currentTimeMillis() + (long)(gameDuration * 1000);
+            timeLeft = (int)gameDuration;
             while (System.currentTimeMillis() < max) {
                 message = in1.readUTF();
                 if (message.equals("winSeeker"))
@@ -50,6 +51,12 @@ public class GameServer {
                     seekerWin();
                     return;
                 }
+                if (timeLeft - 1 > (max - System.currentTimeMillis()) / 1000f) {
+                    timeLeft--;
+                    dataOut1.writeUTF("t " + (timeLeft));
+                    dataOut2.writeUTF("t " + (timeLeft));
+                }
+
                 dataOut2.writeUTF(message);
                 dataOut1.writeUTF(in2.readUTF());
             }

@@ -69,9 +69,14 @@ public class GameCanvas extends JComponent {
     }
 
 
-    //for anonymous objects that are not GameObjects (1 use so far lol)
+    //for anonymous objects that are not GameObjects
     public void addNetworkOutObject(NetworkOutObject n) {
         networkOutObjects.add(n);
+    }
+
+    //for other networkInObjects that are not GameObjects
+    public void addNetworkInObject(NetworkInObject n) {
+        networkInObjects.add(n);
     }
 
     public void remove(GameObject gameObject) {

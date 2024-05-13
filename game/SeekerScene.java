@@ -12,6 +12,7 @@ public class SeekerScene extends GameCanvas {
     OtherCharacter other;
     String perspective;
     Gun gun;
+    Timer timer;
 
     public SeekerScene(GameFrame frame) {
         super(frame);
@@ -25,7 +26,8 @@ public class SeekerScene extends GameCanvas {
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
         player.setCamera(camera);
         gun = new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this, other);
-
+        timer = new Timer(player.getPosition());
+        
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
@@ -34,6 +36,11 @@ public class SeekerScene extends GameCanvas {
         add(other);
         add(gun);
 
+        addNetworkInObject(timer);
+        add(timer.getHund());
+        add(timer.getTens());
+        add(timer.getOnes());
+    
     }
 
     @Override
