@@ -56,6 +56,7 @@ public class NetworkThread extends Thread {
                 break;
             }
         }
+        System.exit(0);
     }
 
     public void setCanvas(GameCanvas canvas) {
