@@ -1,0 +1,19 @@
+May 13 3pm to 12am TODO
+
+Game result screen
+- Victory (need image)
+- Defeat (need image)
+- Replayability
+
+Hider
+- Fake Props
+
+Hider POV
+- Seeker vision box
+
+Seeker POV
+- Time locked Tracker
+
+POVS
+- Visible Timer
+- Sound Effects
