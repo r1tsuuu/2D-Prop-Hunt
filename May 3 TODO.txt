@@ -15,5 +15,5 @@ Seeker POV
 - Time locked Tracker
 
 POVS
-- Visible Timer
+- Visible Timer             https://opengameart.org/content/numbers-0-9-7x10px
 - Sound Effects
