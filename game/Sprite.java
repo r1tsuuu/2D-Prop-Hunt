@@ -33,7 +33,6 @@ public class Sprite extends GameObject implements DrawingObject {
 
     public void loadSprite() {
         try {
-            System.out.println("Loading: " + file + "...");
             SPRITESHEET = ImageIO.read(new File(file));
             wSprite = SPRITESHEET.getWidth() / w;
             hSprite = SPRITESHEET.getHeight() / h;
@@ -97,11 +96,12 @@ public class Sprite extends GameObject implements DrawingObject {
 
     @Override
     public void process(float delta) {
-        // dgds
+        // STATIC, NOT REQ FOR THIS CLASS
     }
 
     @Override
     public void draw(Graphics2D g2d) {
-        g2d.drawImage(spriteArray[y][x], (int) (getPosition().getX() + offset.getX()), (int) (getPosition().getY() + offset.getY()), null);
+        g2d.drawImage(spriteArray[y][x], (int) (getPosition().getX() + offset.getX()),
+                (int) (getPosition().getY() + offset.getY()), null);
     }
 }

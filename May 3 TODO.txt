@@ -20,16 +20,16 @@ Seeker POV
 - Time locked Tracker       [DONE]
 
 POVS
-- Visible Timer             [DONE]
+- Visible Timer             [OTW]
 - Sound Effects             
 
 IF TIME PERMITS
 - Fix vision box accuracy
 
 SFX
-- Win Music
-- Lose Music
-- Gun Sound
-- Background Music
-- Waiting for the hider to hide music(Elevator/Lobby)
-- 
+- Win Music             [YT SFX]
+- Lose Music            [YT SFX]
+- Gun SFX               [KABOOM SFX]
+- Background Music      []
+- Waiting for the hider to hide music(Elevator/Lobby) [Ateneo Bell]
+- Tracker SFX   [YT SFX]
