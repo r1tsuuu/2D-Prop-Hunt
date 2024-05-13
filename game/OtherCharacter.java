@@ -7,7 +7,7 @@ public class OtherCharacter extends AnimatedSprite implements NetworkInObject{
     String type;
 
     public OtherCharacter(String name, Vector2 position, int w, int h, String path, int fps, int xFrameCount) {
-        super(path, w, h, fps, position, xFrameCount);
+        super(path, w, h, 0, position, xFrameCount);
     }
 
     @Override

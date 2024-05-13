@@ -19,6 +19,8 @@ public class AnimatedSprite extends Sprite {
 
     @Override
     public void process(float delta) {
+        if (fps == 0)
+            return;
         if (totalTime > 1f / fps) {
             totalTime = 0;
             x += 1;

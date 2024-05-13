@@ -10,11 +10,13 @@ public class Hider extends Character {
 
     private int propCount;
     private HiderListener listener;
+    private boolean newPropAdded;
 
     public Hider(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(name, w, h, fps, position, path, xFrameCount);
         sendShot = false;
         propCount = xFrameCount;
+        newPropAdded = false;
     }
 
     public void changeProp() {
@@ -29,6 +31,7 @@ public class Hider extends Character {
         if (listener != null) {
             listener.onPropSpawn(prop);
         }
+        newPropAdded = true;
     }
 
     @Override
@@ -71,6 +74,9 @@ public class Hider extends Character {
                 dataOut.writeUTF("winSeeker");
                 System.out.println("sending my loss");
                 sendShot = false;
+            }
+            if (newPropAdded) {
+                dataOut.writeUTF("d " + x);
             }
         } catch (IOException e) {
             System.out.println("Connection Error");
