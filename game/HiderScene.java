@@ -26,6 +26,12 @@ public class HiderScene extends GameCanvas {
         player.setCamera(camera);
         gun = new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png");
 
+        player.setListener(new HiderListener() {
+            @Override
+            public void onPropSpawn(Sprite prop) {
+                add(prop);
+            }
+        });
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();

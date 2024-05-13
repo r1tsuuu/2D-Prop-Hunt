@@ -9,6 +9,7 @@ public class Hider extends Character {
     private boolean sendShot;
 
     private int propCount;
+    private HiderListener listener;
 
     public Hider(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(name, w, h, fps, position, path, xFrameCount);
@@ -19,7 +20,15 @@ public class Hider extends Character {
     public void changeProp() {
         int prev = x;
         while (x == prev)
-            x = (int) (Math.random() * propCount);    
+            x = (int) (Math.random() * propCount);
+    }
+
+    public void spawnProp() {
+        int random = x;
+        Sprite prop = new Sprite("assets\\props.png", w, h, random, 0, new Vector2(getPosition()));
+        if (listener != null) {
+            listener.onPropSpawn(prop);
+        }
     }
 
     @Override
@@ -40,7 +49,14 @@ public class Hider extends Character {
             if (inputKey.getKey() == 'f' && inputKey.getType() == GameInput.Key.PRESSED) {
                 changeProp();
             }
+            if (inputKey.getKey() == 't' && inputKey.getType() == GameInput.Key.PRESSED) {
+                spawnProp();
+            }
         }
+    }
+
+    public void setListener(HiderListener listener) {
+        this.listener = listener;
     }
 
     public void shot() {
