@@ -29,6 +29,7 @@ public class SeekerScene extends GameCanvas {
         timer = new Timer(player.getPosition());
 
         add(camera);
+        add(new ImageObject("mapBackground", new Vector2(-200, -500), "assets\\bgMap.png"));
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
         add(new Tracker(player, other));
