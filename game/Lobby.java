@@ -13,7 +13,7 @@ public class Lobby extends GameCanvas {
 
     @Override
     public void ready() {
-        add(new ImageObject("Lobby", Vector2.ZERO, "assets\\Lobby.png"));
+        add(new ImageObject("Lobby", Vector2.ZERO, "assets\\LobbyScreens\\Lobby.png"));
     }
 
     @Override

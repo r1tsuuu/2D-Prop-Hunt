@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Color;
-
 import engine.GameCanvas;
 import engine.GameFrame;
 import engine.drawing.ImageObject;
@@ -27,8 +25,7 @@ public class SeekerScene extends GameCanvas {
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
         player.setCamera(camera);
         gun = new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this, other);
-        
-        
+
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();

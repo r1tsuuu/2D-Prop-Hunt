@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Color;
-
 import engine.GameCanvas;
 import engine.GameFrame;
 import engine.drawing.ImageObject;

@@ -1,8 +1,6 @@
 package engine;
 
 import java.awt.Dimension;
-
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
