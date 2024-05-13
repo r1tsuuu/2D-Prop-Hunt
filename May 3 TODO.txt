@@ -17,7 +17,7 @@ Hider POV
 - Seeker vision box         [DONE]
 
 Seeker POV
-- Time locked Tracker
+- Time locked Tracker       [DONE]
 
 POVS
 - Visible Timer             [OTW]

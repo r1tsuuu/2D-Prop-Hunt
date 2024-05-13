@@ -3,6 +3,7 @@ package game;
 import engine.GameCanvas;
 import engine.GameFrame;
 import engine.drawing.ImageObject;
+import game.Timer.TimerListener;
 import math.Vector2;
 
 public class SeekerScene extends GameCanvas {
@@ -13,6 +14,7 @@ public class SeekerScene extends GameCanvas {
     String perspective;
     Gun gun;
     Timer timer;
+    Tracker tracker;
 
     public SeekerScene(GameFrame frame) {
         super(frame);
@@ -27,11 +29,23 @@ public class SeekerScene extends GameCanvas {
         player.setCamera(camera);
         gun = new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this, other);
         timer = new Timer(player.getPosition());
+        tracker = new Tracker(player, other);
+        
+        timer.setListener(new TimerListener() {
+
+            @Override
+            public void onTimeReceived(int time) {
+                if (time == 30){
+                    tracker.setCanTrack(true);
+                }
+            }
+            
+        });
 
         add(camera);
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
-        add(new Tracker(player, other));
+        add(tracker);
         add(player);
         add(other);
         add(gun);
