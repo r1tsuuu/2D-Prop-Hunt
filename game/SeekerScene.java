@@ -47,7 +47,7 @@ public class SeekerScene extends GameCanvas {
     public void networkNotified(String input) {
         if (input.equals("victory") || input.equals("defeat"))
             getFrame().endGame(input);
-        if (input.charAt(0) == 'd') {
+        else if (input.charAt(0) == 'd') {
             var values = input.split(" ");
             float posX = Float.parseFloat(values[1]);
             float posY = Float.parseFloat(values[2]);
