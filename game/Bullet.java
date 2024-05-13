@@ -24,9 +24,9 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
     private boolean shot;
     private float angle;
     private boolean dataSent;
-    private OtherCharacter other;
+    private OtherPlayer other;
 
-    public Bullet(Vector2 start, float angle, float length, OtherCharacter other) {
+    public Bullet(Vector2 start, float angle, float length, OtherPlayer other) {
         this.angle = angle;
         this.start = start;
         this.other = other;

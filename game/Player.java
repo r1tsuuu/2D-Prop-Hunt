@@ -11,7 +11,7 @@ import engine.physics.CollisionBox;
 import engine.physics.PhysicsObject;
 import math.Vector2;
 
-public class Character extends AnimatedSprite
+public class Player extends AnimatedSprite
         implements PhysicsObject, InputObject, NetworkOutObject, NetworkInObject {
 
     protected boolean up, down, left, right = false;
@@ -19,7 +19,7 @@ public class Character extends AnimatedSprite
     protected Camera camera;
     protected Vector2 velocity;
 
-    public Character(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
+    public Player(String name, int w, int h, int fps, Vector2 position, String path, int xFrameCount) {
         super(path, w, h, fps, position, xFrameCount);
         new CollisionBox(this, position, getSize(), 0);
     }

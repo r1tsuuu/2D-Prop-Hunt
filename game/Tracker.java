@@ -13,7 +13,7 @@ import math.Vector2;
 
 public class Tracker extends GameObject implements DrawingObject, InputObject {
 
-    OtherCharacter other;
+    OtherPlayer other;
     Seeker seeker;
     Color color;
     Vector2 start;
@@ -28,7 +28,7 @@ public class Tracker extends GameObject implements DrawingObject, InputObject {
     boolean canTrack;
     
 
-    public Tracker(Seeker seeker, OtherCharacter other) {
+    public Tracker(Seeker seeker, OtherPlayer other) {
         setPosition(seeker.getPosition());
         this.other = other;
         this.seeker = seeker;

@@ -18,9 +18,9 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
     private boolean shot = false;
     private boolean notifyRemoveBullet;
     private float t = 0;
-    private OtherCharacter other;
+    private OtherPlayer other;
 
-    public Gun(String name, Vector2 position, String path, Seeker seeker, GameCanvas canvas, OtherCharacter other) {
+    public Gun(String name, Vector2 position, String path, Seeker seeker, GameCanvas canvas, OtherPlayer other) {
         super(name, position, path);
         this.seeker = seeker;
         this.canvas = canvas;

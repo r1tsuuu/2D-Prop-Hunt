@@ -48,8 +48,8 @@ Files
 | c:\Users\ASUS\CSCI22\prop-hunt\engine\physics\PhysicsThread.java    | Java     |         45 |          0 |         11 |         56 |
 | c:\Users\ASUS\CSCI22\prop-hunt\fsm\State.java                       | Java     |          3 |          0 |          3 |          6 |
 | c:\Users\ASUS\CSCI22\prop-hunt\game\Camera.java                     | Java     |         35 |          0 |         10 |         45 |
-| c:\Users\ASUS\CSCI22\prop-hunt\game\Character.java                  | Java     |         72 |          0 |         13 |         85 |
-| c:\Users\ASUS\CSCI22\prop-hunt\game\OtherCharacter.java             | Java     |         16 |          0 |          7 |         23 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\Player.java                  | Java     |         72 |          0 |         13 |         85 |
+| c:\Users\ASUS\CSCI22\prop-hunt\game\OtherPlayer.java             | Java     |         16 |          0 |          7 |         23 |
 | c:\Users\ASUS\CSCI22\prop-hunt\game\SampleScene.java                | Java     |         30 |          0 |          9 |         39 |
 | c:\Users\ASUS\CSCI22\prop-hunt\game\TestWall.java                   | Java     |         38 |          0 |         12 |         50 |
 | c:\Users\ASUS\CSCI22\prop-hunt\math\Vector2.java                    | Java     |         68 |          9 |         20 |         97 |

@@ -34,7 +34,7 @@ Game Starter
         inputThread.start()
         networkThread.start()
 
-networkThread sends message (position of character (0,0))
+networkThread sends message (position of player (0,0))
 networkThread waits for input/message from server
 
 The player who loaded first can wander around
@@ -46,15 +46,15 @@ NetworkThread
     56: input = dataIn.readUTF() //party_commplete
     canvas.networkNotified(input)
         add()
-            new OtherCharacter()
+            new OtherPlayer()
                 load image...etc
             
     for networkObject: receive(input)
-        59: otherCharacter.receive
+        59: otherPlayer.receive
             input is still party_complete...return
     input = dataIn.readUTF() // position of other
     for ...
-        59: othercharacter.receive
+        59: otherplayer.receive
             convert string into position
 
 

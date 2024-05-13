@@ -3,10 +3,10 @@ package game;
 import engine.network.NetworkInObject;
 import math.Vector2;
 
-public class OtherCharacter extends AnimatedSprite implements NetworkInObject{
+public class OtherPlayer extends AnimatedSprite implements NetworkInObject{
     String type;
 
-    public OtherCharacter(String name, Vector2 position, int w, int h, String path, int fps, int xFrameCount) {
+    public OtherPlayer(String name, Vector2 position, int w, int h, String path, int fps, int xFrameCount) {
         super(path, w, h, 0, position, xFrameCount);
     }
 

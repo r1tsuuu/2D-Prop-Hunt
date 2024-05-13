@@ -5,7 +5,7 @@ import java.io.IOException;
 import engine.input.Input.GameInput;
 import math.Vector2;
 
-public class Hider extends Character {
+public class Hider extends Player {
     private boolean sendShot;
 
     private int propCount;

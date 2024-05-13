@@ -18,11 +18,11 @@ public class Input {
             public final static int PRESSED = 1;
             public final static int RELEASED = 2;
 
-            private char character;
+            private char player;
             private int type;
 
-            public Key(char character, int type) {
-                this.character = character;
+            public Key(char player, int type) {
+                this.player = player;
                 this.type = type;
             }
 
@@ -31,7 +31,7 @@ public class Input {
             }
 
             public char getKey() {
-                return character;
+                return player;
             }
         }
 

@@ -8,7 +8,7 @@ import math.Vector2;
 public class HiderScene extends GameCanvas {
     Hider player;
     Camera camera;
-    OtherCharacter other;
+    OtherPlayer other;
     ImageObject gun;
     Bullet bullet;
     ImageObject visionBox;
@@ -19,7 +19,7 @@ public class HiderScene extends GameCanvas {
 
     public void ready() {
         player = new Hider("Eren", 16, 16, 0, new Vector2(928, 560), "assets\\props.png", 102);
-        other = new OtherCharacter("OtherSeeker", new Vector2(928, 560), 24, 24,
+        other = new OtherPlayer("OtherSeeker", new Vector2(928, 560), 24, 24,
                 "assets\\professor_walk_cycle_no_hat.png",
                 12, 9);
 

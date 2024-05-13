@@ -29,8 +29,8 @@ Total : 23 files,  865 codes, 12 comments, 216 blanks, all 1093 lines
 | [engine/physics/PhysicsThread.java](/engine/physics/PhysicsThread.java) | Java | 45 | 0 | 11 | 56 |
 | [fsm/State.java](/fsm/State.java) | Java | 3 | 0 | 3 | 6 |
 | [game/Camera.java](/game/Camera.java) | Java | 35 | 0 | 10 | 45 |
-| [game/Character.java](/game/Character.java) | Java | 72 | 0 | 13 | 85 |
-| [game/OtherCharacter.java](/game/OtherCharacter.java) | Java | 16 | 0 | 7 | 23 |
+| [game/Player.java](/game/Player.java) | Java | 72 | 0 | 13 | 85 |
+| [game/OtherPlayer.java](/game/OtherPlayer.java) | Java | 16 | 0 | 7 | 23 |
 | [game/SampleScene.java](/game/SampleScene.java) | Java | 30 | 0 | 9 | 39 |
 | [game/TestWall.java](/game/TestWall.java) | Java | 38 | 0 | 12 | 50 |
 | [math/Vector2.java](/math/Vector2.java) | Java | 68 | 9 | 20 | 97 |

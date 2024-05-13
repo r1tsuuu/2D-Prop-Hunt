@@ -6,7 +6,7 @@ import java.io.IOException;
 import engine.input.Input.GameInput;
 import math.Vector2;
 
-public class Seeker extends Character {
+public class Seeker extends Player {
 
     float gunAngle;
     Vector2 mouseFramePosition;
