@@ -54,7 +54,6 @@ public class Gun extends ImageObject implements InputObject, NetworkOutObject {
         super(name, position, path);
         this.seeker = seeker;
         this.canvas = canvas;
-        System.out.println(seeker);
         this.other = other;
         shot = false;
         setOffset(Vector2.multiply(seeker.getSize(), 0.20f));
