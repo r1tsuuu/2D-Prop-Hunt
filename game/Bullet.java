@@ -1,3 +1,25 @@
+/**
+	The Bullet class represents the bullet shot by the Gun.
+    It is a hitscan that checks whether it intersects the target hider and
+    displays a line.
+
+    @author Alinus Abuke (230073)	
+    @author Neil Aldous Biason (230940)
+    @version 13 May 2024
+
+    We have not discussed the Java language code in our program 
+    with anyone other than our instructor or the teaching assistants 
+    assigned to this course.
+
+    We have not used Java language code obtained from another student, 
+    or any other unauthorized source, either modified or unmodified.
+
+    If any Java language code or documentation used in our program 
+    was obtained from another source, such as a textbook or website, 
+    that has been clearly noted with a proper citation in the comments 
+    of our program.
+**/
+
 package game;
 
 import java.awt.BasicStroke;
@@ -12,7 +34,7 @@ import engine.drawing.DrawingObject;
 import engine.network.NetworkOutObject;
 import math.Vector2;
 
-public class Bullet extends GameObject implements DrawingObject, NetworkOutObject{
+public class Bullet extends GameObject implements DrawingObject, NetworkOutObject {
 
     private int x1;
     private int y1;
@@ -26,6 +48,15 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
     private boolean dataSent;
     private OtherPlayer other;
 
+    /**
+     * Instantiates a bullet. Uses trigonometry to figure out the end position of
+     * the line.
+     * 
+     * @param start  position
+     * @param angle  in radians
+     * @param length float
+     * @param other  the target of the bullet
+     */
     public Bullet(Vector2 start, float angle, float length, OtherPlayer other) {
         this.angle = angle;
         this.start = start;
@@ -35,13 +66,16 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
         y1 = (int) start.getY();
         x2 = (int) end.getX();
         y2 = (int) end.getY();
-        if (other == null) return;
+        if (other == null)
+            return;
 
         shot = Vector2.lineIntersectsRectangle(start, end, other.getPosition(), other.getSize());
-        System.out.println("the boi got shot: " + shot + "\t" + angle);
         dataSent = false;
     }
 
+    /**
+     * Draws a line from the bullet fields and properties from start to end.
+     */
     @Override
     public void draw(Graphics2D g2d) {
 
@@ -51,10 +85,14 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
 
     }
 
+    /**
+     * Sends the bullet properties to the server for the other client to display
+     */
     @Override
     public void send(DataOutputStream dataOut) {
         try {
-            if (dataSent || other == null) return;
+            if (dataSent || other == null)
+                return;
             dataOut.writeUTF(String.format("b %s %.9f %s", start, angle, shot));
             dataSent = true;
         } catch (IOException e) {
@@ -62,6 +100,9 @@ public class Bullet extends GameObject implements DrawingObject, NetworkOutObjec
         }
     }
 
+    /**
+     * Required function when implementing DrawingObject
+     */
     @Override
     public void process(float delta) {
     }
