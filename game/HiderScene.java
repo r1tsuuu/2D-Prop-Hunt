@@ -65,7 +65,7 @@ public class HiderScene extends GameCanvas {
 
         Timer timer = new Timer(player.getPosition());
         add(camera);
-        add(new ImageObject("mapBackground", new Vector2(-200, -500), "assets\\bgMap.png"));
+        add(new ImageObject("mapBackground", new Vector2(-900, -500), "assets\\bgMap.png"));
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         addWalls();
         add(player);
