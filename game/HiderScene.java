@@ -1,8 +1,29 @@
+/**
+	The HiderScene class is instantiated in the hider side point of view.
+    It instantiates and adds the required objects for the hiding player.
+
+    @author Alinus Abuke (230073)	
+    @author Neil Aldous Biason (230940)
+    @version 13 May 2024
+
+    We have not discussed the Java language code in our program 
+    with anyone other than our instructor or the teaching assistants 
+    assigned to this course.
+
+    We have not used Java language code obtained from another student, 
+    or any other unauthorized source, either modified or unmodified.
+
+    If any Java language code or documentation used in our program 
+    was obtained from another source, such as a textbook or website, 
+    that has been clearly noted with a proper citation in the comments 
+    of our program.
+**/
 package game;
 
 import engine.GameCanvas;
 import engine.GameFrame;
 import engine.drawing.ImageObject;
+import game.Hider.HiderListener;
 import math.Vector2;
 
 public class HiderScene extends GameCanvas {
@@ -13,10 +34,16 @@ public class HiderScene extends GameCanvas {
     Bullet bullet;
     ImageObject visionBox;
 
+    /**
+     * Instantiates the hider scene
+     */
     public HiderScene(GameFrame frame) {
         super(frame);
     }
 
+    /**
+     * Instantiates the required hider objects
+     */
     public void ready() {
         player = new Hider("Eren", 16, 16, 0, new Vector2(928, 560), "assets\\props.png", 102);
         other = new OtherPlayer("OtherSeeker", new Vector2(928, 560), 24, 24,
@@ -51,6 +78,11 @@ public class HiderScene extends GameCanvas {
         add(timer.getOnes());
     }
 
+    /**
+     * Receives messages for thte server and if the hider has been shot,
+     * the angle of the seeker's gun and other seeker properties
+     * whether the bullet should be removed or if the hider lost or won.
+     */
     @Override
     public void networkNotified(String input) {
         if (input.charAt(0) == 'b') {
@@ -58,7 +90,6 @@ public class HiderScene extends GameCanvas {
             var start = new Vector2(values[1], values[2]);
             var angle = Float.parseFloat(values[3]);
             if (values[4].equals("true")) {
-                System.out.println("I have been shot!");
                 player.shot();
             }
             bullet = new Bullet(start, angle, 16 * 9, null);
@@ -80,6 +111,9 @@ public class HiderScene extends GameCanvas {
         }
     }
 
+    /**
+     * Adds the walls of the map
+     */
     private void addWalls() {
         add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
         add(new Wall(new Vector2(11, 11), new Vector2(16, 1205)));

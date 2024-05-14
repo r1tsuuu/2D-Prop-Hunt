@@ -103,9 +103,9 @@ public class GameServer {
             server = new ServerSocket(4952);
             System.out.println("Server waiting");
             s1 = server.accept();
-            System.out.println("player 1 connected");
+            System.out.println("Player 1 connected");
             s2 = server.accept();
-            System.out.println("player 2 connected");
+            System.out.println("Player 2 connected");
 
             dataOut1 = new DataOutputStream(s1.getOutputStream());
             dataOut2 = new DataOutputStream(s2.getOutputStream());
@@ -131,20 +131,15 @@ public class GameServer {
             dataOut2.flush();
             long max = System.currentTimeMillis() + (long) (gracePeriod * 1000);
             timeLeft = (int) gracePeriod;
-            System.out.println("STARTING GRACE PERIOD");
             while (System.currentTimeMillis() < max) {
-                // in1.readUTF();
-                System.out.println(timeLeft);
                 if (timeLeft - 1 > (max - System.currentTimeMillis()) / 1000f) {
                     timeLeft--;
-                    System.out.println(timeLeft);
                     dataOut1.writeUTF("t " + timeLeft);
                 }
             }
-            System.out.println("ENDING GRACE PERIOD");
             dataOut2.writeUTF("seeker");
         } catch (IOException e) {
-            System.out.println("preGame server error");
+            System.out.println("Grace Period Server Error");
         }
     }
 
@@ -152,7 +147,6 @@ public class GameServer {
      * Called by playGame when the seeker wins
      */
     private static void seekerWin() {
-        System.out.println("seeker win");
         try {
             dataOut1.writeUTF("defeat");
             dataOut2.writeUTF("victory");
@@ -165,7 +159,6 @@ public class GameServer {
      * Called by playGame when the seeker wins
      */
     private static void hiderWin() {
-        System.out.println("hider win");
         try {
             dataOut1.writeUTF("victory");
             dataOut2.writeUTF("defeat");
@@ -183,7 +176,6 @@ public class GameServer {
             dataOut2.writeUTF("STOP");
             dataOut1.flush();
             dataOut2.flush();
-            System.out.println("Sent stop");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -200,14 +192,9 @@ public class GameServer {
         try {
             String replay1 = in1.readUTF();
             String replay2 = in2.readUTF();
-            System.out.println(replay1);
-            System.out.println(replay2);
 
             var ans1 = replay1.split(" ");
             var ans2 = replay2.split(" ");
-
-            System.out.println(replay1);
-            System.out.println(replay2);
 
             while (!ans1[0].equals("replay")) {
                 dataOut1.writeUTF("");
@@ -225,7 +212,6 @@ public class GameServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("should be in here");
         return false;
     }
 }

@@ -118,7 +118,11 @@ public class GameFrame extends JFrame {
     public void endGame(String result) {
         var gameOverScene = new GameOver(this, result);
         setScene(gameOverScene);
-
+        try {
+            // letting the result seep in
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
         int replay = JOptionPane.showConfirmDialog(this, "Play Again?", "Prop Hunt: Hide and Seek",
                 JOptionPane.YES_NO_OPTION);
 

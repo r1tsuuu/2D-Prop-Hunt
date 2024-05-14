@@ -28,7 +28,6 @@ public class PhysicsThread extends Thread {
     public void run() {
 
         if (canvas == null) {
-            System.out.println("no current Canvas");
             return;
         }
 

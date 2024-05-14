@@ -91,7 +91,7 @@ public class NetworkThread extends Thread {
                 }
 
             } catch (IOException e) {
-                System.out.println(e);
+                System.out.println("IO Exception");
                 break;
             }
         }
