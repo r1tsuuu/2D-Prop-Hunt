@@ -53,9 +53,9 @@ public class GameOver extends GameCanvas {
     @Override
     public void ready() {
         if (result.equals("victory"))
-            imageResult = new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\WinScreen.png");
+            imageResult = new ImageObject("screen", Vector2.ZERO, "assets/LobbyScreens/WinScreen.png");
         else if (result.equals("defeat"))
-            imageResult = new ImageObject("screen", Vector2.ZERO, "assets\\LobbyScreens\\LoseScreen.png");
+            imageResult = new ImageObject("screen", Vector2.ZERO, "assets/LobbyScreens/LoseScreen.png");
         add(imageResult);
     }
 
@@ -88,7 +88,7 @@ public class GameOver extends GameCanvas {
             getFrame().startGame(input);
         if (input.equals("wait")) {
             remove(imageResult);
-            add(new ImageObject("Lobby", Vector2.ZERO, "assets\\LobbyScreens\\SeekerBlindfold.png"));
+            add(new ImageObject("Lobby", Vector2.ZERO, "assets/LobbyScreens/SeekerBlindfold.png"));
         }
         if (input.equals("STOP"))
             System.exit(0);

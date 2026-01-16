@@ -53,10 +53,10 @@ public class SeekerScene extends GameCanvas {
     public void ready() {
 
         player = new Seeker(new Vector2(928, 560));
-        other = new OtherPlayer("Hider", new Vector2(928, 560), 16, 16, "assets\\props.png", 0, 5);
+        other = new OtherPlayer("Hider", new Vector2(928, 560), 16, 16, "assets/props.png", 0, 5);
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 2f);
         player.setCamera(camera);
-        gun = new Gun("Pistol", player.getPosition(), "assets\\gun.png", (Seeker) player, this, other);
+        gun = new Gun("Pistol", player.getPosition(), "assets/gun.png", (Seeker) player, this, other);
         timer = new Timer(player.getPosition());
         tracker = new Tracker(player, other);
 
@@ -72,8 +72,8 @@ public class SeekerScene extends GameCanvas {
         });
 
         add(camera);
-        add(new ImageObject("mapBackground", new Vector2(-900, -500), "assets\\bgMap.png"));
-        add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
+        add(new ImageObject("mapBackground", new Vector2(-900, -500), "assets/bgMap.png"));
+        add(new ImageObject("map", Vector2.ZERO, "assets/map.png"));
         addWalls();
         add(tracker);
         add(player);
@@ -96,7 +96,7 @@ public class SeekerScene extends GameCanvas {
             float posX = Float.parseFloat(values[1]);
             float posY = Float.parseFloat(values[2]);
             int xFrame = Integer.parseInt(values[3]);
-            add(new Sprite("assets\\props.png", 16, 16, xFrame, 0, new Vector2(posX, posY)));
+            add(new Sprite("assets/props.png", 16, 16, xFrame, 0, new Vector2(posX, posY)));
         }
     }
 

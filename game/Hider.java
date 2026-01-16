@@ -80,7 +80,7 @@ public class Hider extends Player implements NetworkInObject{
     public void spawnProp() {
         if (!canAddFakeProps)
             return;
-        Sprite prop = new Sprite("assets\\props.png", w, h, x, 0, new Vector2(getPosition()));
+        Sprite prop = new Sprite("assets/props.png", w, h, x, 0, new Vector2(getPosition()));
         mostRecentFakePropPosition = prop.getPosition();
         if (listener != null) {
             listener.onPropSpawn(prop);

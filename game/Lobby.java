@@ -34,7 +34,7 @@ public class Lobby extends GameCanvas {
      */
     public Lobby(GameFrame frame) {
         super(frame);
-        lobbyImage = new ImageObject("Lobby", Vector2.ZERO, "assets\\LobbyScreens\\Lobby.png");
+        lobbyImage = new ImageObject("Lobby", Vector2.ZERO, "assets/LobbyScreens/Lobby.png");
     }
 
     /**
@@ -55,7 +55,7 @@ public class Lobby extends GameCanvas {
             getFrame().startGame(input);
         } else if (input.equals("wait")) {
             remove(lobbyImage);
-            add(new ImageObject("wait", Vector2.ZERO, "assets\\LobbyScreens\\SeekerBlindfold.png"));
+            add(new ImageObject("wait", Vector2.ZERO, "assets/LobbyScreens/SeekerBlindfold.png"));
         } else if (input.equals("seeker")) {
             getFrame().startGame(input);
         }

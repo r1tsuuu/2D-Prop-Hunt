@@ -45,15 +45,15 @@ public class HiderScene extends GameCanvas {
      * Instantiates the required hider objects
      */
     public void ready() {
-        player = new Hider("Eren", 16, 16, 0, new Vector2(928, 560), "assets\\props.png", 102);
+        player = new Hider("Eren", 16, 16, 0, new Vector2(928, 560), "assets/props.png", 102);
         other = new OtherPlayer("OtherSeeker", new Vector2(928, 560), 24, 24,
-                "assets\\professor_walk_cycle_no_hat.png",
+                "assets/professor_walk_cycle_no_hat.png",
                 12, 9);
 
         camera = new Camera(player.getPosition(), this, Vector2.multiply(player.getSize(), -0.5f), 1f);
         player.setCamera(camera);
-        gun = new ImageObject("OtherPistol", other.getPosition(), "assets\\gun.png");
-        visionBox = new ImageObject("Seeker Vision Box", other.getPosition(), "assets\\visionProMaxSeekerPOV.png");
+        gun = new ImageObject("OtherPistol", other.getPosition(), "assets/gun.png");
+        visionBox = new ImageObject("Seeker Vision Box", other.getPosition(), "assets/visionProMaxSeekerPOV.png");
         visionBox.setOffset(new Vector2(-200, -150));
 
         player.setListener(new HiderListener() {
@@ -65,8 +65,8 @@ public class HiderScene extends GameCanvas {
 
         Timer timer = new Timer(player.getPosition());
         add(camera);
-        add(new ImageObject("mapBackground", new Vector2(-900, -500), "assets\\bgMap.png"));
-        add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
+        add(new ImageObject("mapBackground", new Vector2(-900, -500), "assets/bgMap.png"));
+        add(new ImageObject("map", Vector2.ZERO, "assets/map.png"));
         addWalls();
         add(player);
         add(other);
@@ -115,7 +115,7 @@ public class HiderScene extends GameCanvas {
      * Adds the walls of the map
      */
     private void addWalls() {
-        add(new ImageObject("map", Vector2.ZERO, "assets\\map.png"));
+        add(new ImageObject("map", Vector2.ZERO, "assets/map.png"));
         add(new Wall(new Vector2(11, 11), new Vector2(16, 1205)));
         add(new Wall(new Vector2(11, 11), new Vector2(1861, 16)));
         add(new Wall(new Vector2(1856, 11), new Vector2(1861, 1205)));

@@ -128,6 +128,10 @@ public class Sprite extends GameObject implements DrawingObject {
      */
     @Override
     public void draw(Graphics2D g2d) {
+        if (spriteArray == null || SPRITESHEET == null) {
+            System.out.println("WARNING: Sprite not loaded yet - file: " + file);
+            return;
+        }
         g2d.drawImage(spriteArray[y][x], (int) (getPosition().getX() + offset.getX()),
                 (int) (getPosition().getY() + offset.getY()), null);
     }
